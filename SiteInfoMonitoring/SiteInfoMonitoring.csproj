@@ -149,6 +149,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DivisionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Core\Enums\ItempropTypeEnum.cs" />
@@ -164,6 +165,7 @@
     <Compile Include="Jobs\EmailSheduler.cs" />
     <Compile Include="Models\Division.cs" />
     <Compile Include="Models\Itemprop.cs" />
+    <Compile Include="Models\LoginModels.cs" />
     <Compile Include="Models\Table.cs" />
     <Compile Include="Models\TableItemprop.cs" />
     <Compile Include="Models\User.cs" />
@@ -208,6 +210,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Division\Check.cshtml" />
     <Content Include="Views\Division\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

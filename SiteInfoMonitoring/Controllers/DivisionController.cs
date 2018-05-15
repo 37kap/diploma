@@ -8,11 +8,13 @@ namespace SiteInfoMonitoring.Controllers
     public class DivisionController : Controller
     {
         // GET: Division
+        [Authorize(Roles ="")]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult Check(string name)
         {
             if (name != null)

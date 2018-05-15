@@ -9,13 +9,14 @@
 {
     foreach (var div in Model)
     {
+        <hr>
         <h3 style="text-align: center">@div.Description</h3>
         <table class="table table-bordered">
             @foreach (var data in div.Data)
             {
-                if (!data.IsExist)
+                if (data.IsExist || data.Type == SiteInfoMonitoring.Core.Enums.ItempropTypeEnum.Optional)
                 {
-                    <tr style="background-color:#ffb3b3">
+                    <tr style="background-color:#c3ffad">
                         <td width="200">@data.Value</td>
                         <td>@data.Description</td>
                         <td width="57">@data.Count</td>
@@ -23,7 +24,7 @@
                 }
                 else
                 {
-                    <tr style="background-color:#c3ffad">
+                    <tr style="background-color:#ffb3b3">
                         <td width="200">@data.Value</td>
                         <td>@data.Description</td>
                         <td width="57">@data.Count</td>
@@ -38,15 +39,8 @@
             <table class="table table-bordered">
                 @foreach (var tip in tbl.TableItemprops)
                 {
-                    if (tip.Count == 0 || tip.Count != tbl.RowCount)
-                    {
-                        <tr style="background-color:#ffb3b3">
-                            <td width="200">@tip.Value</td>
-                            <td>@tip.Description</td>
-                            <td width="57">@tip.Count</td>
-                        </tr>
-                    }
-                    else
+                    if (tip.Count == tbl.RowCount && tip.Count != 0 || tip.Type == SiteInfoMonitoring.Core.Enums.ItempropTypeEnum.Optional || tbl.Type == SiteInfoMonitoring.Core.Enums.TableTypeEnum.Optional
+                        || tip.Type == SiteInfoMonitoring.Core.Enums.ItempropTypeEnum.Selective && tbl.TableItemprops.Where(t => t.Type == SiteInfoMonitoring.Core.Enums.ItempropTypeEnum.Selective).Sum(t => t.Count) == tbl.RowCount)
                     {
                         <tr style="background-color:#c3ffad">
                             <td width="200">@tip.Value</td>
@@ -54,10 +48,23 @@
                             <td width="57">@tip.Count</td>
                         </tr>
                     }
+                    else
+                    {
+                        <tr style="background-color:#ffb3b3">
+                            <td width="200">@tip.Value</td>
+                            <td>@tip.Description</td>
+                            <td width="57">@tip.Count</td>
+                        </tr>
+
+                    }
                 }
             </table>
             <h5>Количество строк в таблице: @tbl.RowCount</h5>
         }
     }
+}
+else
+{
+    <h3>Введите корректный адрес сайта</h3>
 }
 
