@@ -21,17 +21,13 @@ namespace SiteInfoMonitoring.Controllers
             {
                 var siteChecker = new SiteChecker(name);
                 ViewBag.SiteAvailability = "Сайт " + name + (siteChecker.CheckSiteAvailability() ? " доступен" : " недоступен");
-                var divs = siteChecker.GetContentFromXml();
-                if (siteChecker.XmlParseException == null)
+                var divs = siteChecker.CheckDivisionsExist();
+                if (siteChecker.XmlParser.Exception != null)
                 {
-                    siteChecker.CheckDivisionsExist();
+                    ViewBag.Exception = siteChecker.XmlParser.Exception;
                 }
-                else
-                {
-                    ViewBag.Exception = siteChecker.XmlParseException;
-                }
-                var htmlParser = new EduSiteParser(name, divs, siteChecker.Users);
-                htmlParser.StartParse();
+                var htmlParser = new EduSiteParser(name, divs, siteChecker.XmlParser.GetUsers());
+                //htmlParser.StartParse();
                 return View(divs);
             }
             else

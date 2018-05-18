@@ -1,30 +1,46 @@
-﻿using System.Web.Mvc;
+﻿using SiteInfoMonitoring.Core.Parsers;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace SiteInfoMonitoring.Controllers
 {
     public class HomeController : Controller
     {
-        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
 
-
         [Authorize]
-        public ActionResult About()
+        public ActionResult Analysis()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        [Authorize]
-        public ActionResult Contact()
+        public ActionResult UserLogin()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.IsAdminUser = IsAdminUser();
+            return PartialView(System.Web.HttpContext.Current.User);
+        }
 
-            return View();
+        public bool IsAdminUser()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = new XmlParser().GetUsers().FirstOrDefault(u => u.Login == User.Identity.Name);
+                if (user != null)
+                {
+                    if (user.Role == Core.Enums.RolesEnum.admin)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

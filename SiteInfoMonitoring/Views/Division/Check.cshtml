@@ -1,6 +1,5 @@
 ﻿@using SiteInfoMonitoring.Models;
 @model IEnumerable<Division>
-
 @{
     ViewBag.Title = "Информация о сайте";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,62 +8,72 @@
 {
     foreach (var div in Model)
     {
-        <hr>
-        <h3 style="text-align: center">@div.Description</h3>
-        <table class="table table-bordered">
-            @foreach (var data in div.Data)
-            {
-                if (data.IsExist || data.Type == SiteInfoMonitoring.Core.Enums.ItempropTypeEnum.Optional)
-                {
-                    <tr style="background-color:#c3ffad">
-                        <td width="200">@data.Value</td>
-                        <td>@data.Description</td>
-                        <td width="57">@data.Count</td>
-                    </tr>
-                }
-                else
-                {
-                    <tr style="background-color:#ffb3b3">
-                        <td width="200">@data.Value</td>
-                        <td>@data.Description</td>
-                        <td width="57">@data.Count</td>
-                    </tr>
-                }
-            }
-        </table>
-
-        foreach (var tbl in div.Tables)
+        if (div.IsExist)
         {
-            <h4>@tbl.Name</h4>
+            <hr>
+            <h3 style="text-align: center">@div.Description</h3>
             <table class="table table-bordered">
-                @foreach (var tip in tbl.TableItemprops)
+                @foreach (var data in div.Data)
                 {
-                    if (tip.Count == tbl.RowCount && tip.Count != 0 || tip.Type == SiteInfoMonitoring.Core.Enums.ItempropTypeEnum.Optional || tbl.Type == SiteInfoMonitoring.Core.Enums.TableTypeEnum.Optional
-                        || tip.Type == SiteInfoMonitoring.Core.Enums.ItempropTypeEnum.Selective && tbl.TableItemprops.Where(t => t.Type == SiteInfoMonitoring.Core.Enums.ItempropTypeEnum.Selective).Sum(t => t.Count) == tbl.RowCount)
+                    if (data.IsExist || data.Type == SiteInfoMonitoring.Core.Enums.ItempropTypeEnum.Optional)
                     {
                         <tr style="background-color:#c3ffad">
-                            <td width="200">@tip.Value</td>
-                            <td>@tip.Description</td>
-                            <td width="57">@tip.Count</td>
+                            <td width="200">@data.Value</td>
+                            <td>@data.Description</td>
+                            <td width="57">@data.Count</td>
                         </tr>
                     }
                     else
                     {
                         <tr style="background-color:#ffb3b3">
-                            <td width="200">@tip.Value</td>
-                            <td>@tip.Description</td>
-                            <td width="57">@tip.Count</td>
+                            <td width="200">@data.Value</td>
+                            <td>@data.Description</td>
+                            <td width="57">@data.Count</td>
                         </tr>
-
                     }
                 }
             </table>
-            <h5>Количество строк в таблице: @tbl.RowCount</h5>
+
+            foreach (var tbl in div.Tables)
+            {
+                <h4>@tbl.Name</h4>
+                <table class="table table-bordered">
+                    @foreach (var tip in tbl.TableItemprops)
+                    {
+                        if (tip.Count == tbl.RowCount && tip.Count != 0 || tip.Type == SiteInfoMonitoring.Core.Enums.ItempropTypeEnum.Optional || tbl.Type == SiteInfoMonitoring.Core.Enums.TableTypeEnum.Optional
+                            || tip.Type == SiteInfoMonitoring.Core.Enums.ItempropTypeEnum.Selective && tbl.TableItemprops.Where(t => t.Type == SiteInfoMonitoring.Core.Enums.ItempropTypeEnum.Selective).Sum(t => t.Count) == tbl.RowCount && tip.Count != 0)
+                        {
+                            <tr style="background-color:#c3ffad">
+                                <td width="200">@tip.Value</td>
+                                <td>@tip.Description</td>
+                                <td width="57">@tip.Count</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr style="background-color:#ffb3b3">
+                                <td width="200">@tip.Value</td>
+                                <td>@tip.Description</td>
+                                <td width="57">@tip.Count</td>
+                            </tr>
+
+                        }
+                    }
+                </table>
+                <h5>Количество строк в таблице: @tbl.RowCount</h5>
+            }
+        }
+        else
+        {
+            <hr>
+            <h3 style="text-align: center">Раздел "@div.Description" отсутствует</h3>
         }
     }
 }
 else
 {
-    <h3>Введите корректный адрес сайта</h3>
+    <h3>
+        Введите корректный @Html.ActionLink("адрес сайта", "Analysis", "Home")
+    </h3>
 }
 

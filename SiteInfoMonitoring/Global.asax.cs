@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using SiteInfoMonitoring.Core.Settings;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -13,6 +10,7 @@ namespace SiteInfoMonitoring
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            AutofacConfig.Initialize();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
