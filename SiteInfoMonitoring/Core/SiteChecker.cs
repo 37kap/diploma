@@ -9,27 +9,13 @@ namespace SiteInfoMonitoring.Core
     public class SiteChecker
     {
         private string SiteName;
-        public List<Division> Divisions;
-        public List<User> Users;
-        private string XmlFile;
-        public Exception XmlParseException;
+        private List<Division> Divisions;
+        public XmlParser XmlParser;
         public SiteChecker(string siteName, string xml_file = "Divisions.XML")
         {
             SiteName = siteName.StartsWith("http") ? siteName : "http://" + siteName;
-            XmlFile = xml_file;
-        }
-
-        public List<Division> GetContentFromXml()
-        {
-            var xml_parser = new XmlParser(SiteName, XmlFile);
-            Users = xml_parser.GetUsers();
-            XmlParseException = xml_parser.Exception;
-            if (XmlParseException == null)
-            {
-                Divisions = xml_parser.GetDivisions();
-                XmlParseException = xml_parser.Exception;
-            }
-            return Divisions;
+            XmlParser = new XmlParser(SiteName, xml_file);
+            Divisions = XmlParser.GetDivisions();
         }
 
         /// <summary>

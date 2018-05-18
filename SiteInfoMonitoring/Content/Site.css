@@ -43,3 +43,17 @@ td {
 input {
     width: 150px;
 }
+
+@media (min-width: 768px) {
+    .login-button {
+        float: right;
+    }
+}
+li {
+    list-style-type: none; /* Убираем маркеры */
+}
+
+ul {
+    margin-left: 0; /* Отступ слева в браузере IE и Opera */
+    padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+}

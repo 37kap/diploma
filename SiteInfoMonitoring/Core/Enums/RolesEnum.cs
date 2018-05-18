@@ -1,6 +1,6 @@
 ﻿namespace SiteInfoMonitoring.Core.Enums
 {
-    public enum RulesEnum
+    public enum RolesEnum
     {
         admin = 0,
         user = 1

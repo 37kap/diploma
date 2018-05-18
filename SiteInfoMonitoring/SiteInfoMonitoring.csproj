@@ -49,10 +49,22 @@
     <Reference Include="AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
       <HintPath>..\packages\AngleSharp.0.9.9.2\lib\net45\AngleSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Autofac, Version=4.0.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.0.1\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Calabonga.Portal.Config, Version=1.2.5933.16131, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvcConfig.1.2.1\lib\net45\Calabonga.Portal.Config.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Quartz, Version=3.0.4.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
       <HintPath>..\packages\Quartz.3.0.4\lib\net452\Quartz.dll</HintPath>
     </Reference>
@@ -120,9 +132,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ApplicationInsights">
       <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
     </Reference>
@@ -152,17 +161,25 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DivisionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Core\Enums\ItempropTypeEnum.cs" />
-    <Compile Include="Core\Enums\RulesEnum.cs" />
+    <Compile Include="Core\Enums\RolesEnum.cs" />
     <Compile Include="Core\Enums\TableTypeEnum.cs" />
     <Compile Include="Core\Parsers\EduSiteParser.cs" />
     <Compile Include="Core\Parsers\XmlParser.cs" />
+    <Compile Include="Core\Settings\AppSettingsManager.cs" />
+    <Compile Include="Core\Settings\AutofacConfig.cs" />
+    <Compile Include="Core\Settings\CurrentAppSettings.cs" />
+    <Compile Include="Core\Settings\JsonConfigSerializer.cs" />
+    <Compile Include="Core\Settings\NoCache.cs" />
     <Compile Include="Core\SiteChecker.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Jobs\EmailSender.cs" />
     <Compile Include="Jobs\EmailSheduler.cs" />
+    <Compile Include="Jobs\SiteAnalysiser.cs" />
+    <Compile Include="Jobs\SiteAnalysisSheduler.cs" />
     <Compile Include="Models\Division.cs" />
     <Compile Include="Models\Itemprop.cs" />
     <Compile Include="Models\LoginModels.cs" />
@@ -205,12 +222,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Analysis.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Division\Check.cshtml" />
-    <Content Include="Views\Division\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Home\UserLogin.cshtml" />
+    <Content Include="Views\Setting\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

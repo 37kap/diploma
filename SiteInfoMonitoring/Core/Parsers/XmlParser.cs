@@ -15,7 +15,7 @@ namespace SiteInfoMonitoring.Core.Parsers
         private List<Division> Divisions;
         public Exception Exception;
 
-        public XmlParser(string siteName, string xml_file = "Divisions.XML")
+        public XmlParser(string siteName = "", string xml_file = "Divisions.XML")
         {
             SiteName = siteName;
             FilePath = xml_file;
@@ -23,6 +23,7 @@ namespace SiteInfoMonitoring.Core.Parsers
 
         public List<Division> GetDivisions()
         {
+            Users = Users == null || Users.Count == 0 ? GetUsers() : Users;
             Divisions = new List<Division>();
             try
             {
@@ -226,11 +227,11 @@ namespace SiteInfoMonitoring.Core.Parsers
                     XmlNode attrRule = xnode.Attributes.GetNamedItem("rule");
                     if (attrRule != null)
                     {
-                        us.Rule = attrRule.Value == "admin" ? RulesEnum.admin : RulesEnum.user;
+                        us.Role = attrRule.Value == "admin" ? RolesEnum.admin : RolesEnum.user;
                     }
                     else
                     {
-                        us.Rule = RulesEnum.user;
+                        us.Role = RolesEnum.user;
                     }
                     Users.Add(us);
                 }

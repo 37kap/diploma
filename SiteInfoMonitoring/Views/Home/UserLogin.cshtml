@@ -1,0 +1,14 @@
+﻿@model System.Security.Principal.IPrincipal
+
+@if (Model != null && Model.Identity.IsAuthenticated)
+{
+    if (ViewBag.IsAdminUser == true)
+    {
+        <li>@Html.ActionLink("Настройки", "Index", "Setting")</li>
+    }
+    <li>@Html.ActionLink("Выход", "Logoff", "Account")</li>
+}
+else
+{
+    <li>@Html.ActionLink("Вход", "Login", "Account")</li>
+}

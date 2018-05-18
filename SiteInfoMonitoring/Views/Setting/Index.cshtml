@@ -1,0 +1,59 @@
+﻿@model SiteInfoMonitoring.Core.Settings.CurrentAppSettings
+@{
+    ViewBag.Title = "Настройки";
+}
+
+<div class="row">
+    <div class="page-header">
+        <h2>
+            @ViewBag.Title
+            <small>view</small>
+        </h2>
+    </div>
+    <div class="col-md-12">
+        @using (Html.BeginForm())
+        {
+
+            @Html.ValidationSummary()
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.IsLogging)<br />
+                @Html.CheckBoxFor(x => x.IsLogging)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.IsHtmlForEmailMessagesEnabled)<br />
+                @Html.CheckBoxFor(x => x.IsHtmlForEmailMessagesEnabled)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.AdminEmail)
+                @Html.TextBoxFor(x => x.AdminEmail, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.AdminEmail)
+            </div><div class="form-group">
+                @Html.LabelFor(x => x.RobotEmail)
+                @Html.TextBoxFor(x => x.RobotEmail, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.RobotEmail)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.SmtpClient)
+                @Html.TextBoxFor(x => x.SmtpClient, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.SmtpClient)
+            </div> <div class="form-group">
+                @Html.LabelFor(x => x.DomainUrl)
+                @Html.TextBoxFor(x => x.DomainUrl, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.DomainUrl)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.DefaultPagerSize)
+                @Html.TextBoxFor(x => x.DefaultPagerSize, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.DefaultPagerSize)
+            </div>
+
+            <p>
+                <button class="btn btn-primary">Сохраннить</button>
+            </p>
+        }
+    </div>
+</div>

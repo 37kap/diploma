@@ -9,7 +9,7 @@ namespace SiteInfoMonitoring.Models
         public string Email;
         public string Login;
         public string Password;
-        public RulesEnum Rule;
+        public RolesEnum Role;
         public List<string> Problems = new List<string>();
     }
 }
