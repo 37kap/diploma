@@ -1,7 +1,9 @@
 ﻿using SiteInfoMonitoring.Core.Parsers;
+using SiteInfoMonitoring.Core.Settings;
 using SiteInfoMonitoring.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 
 namespace SiteInfoMonitoring.Core
@@ -11,11 +13,18 @@ namespace SiteInfoMonitoring.Core
         private string SiteName;
         private List<Division> Divisions;
         public XmlParser XmlParser;
-        public SiteChecker(string siteName, string xml_file = "Divisions.XML")
+        public SiteChecker(string siteName)
         {
             SiteName = siteName.StartsWith("http") ? siteName : "http://" + siteName;
-            XmlParser = new XmlParser(SiteName, xml_file);
+            XmlParser = new XmlParser(SiteName, SettingsManager.Settings.XmlFile);
             Divisions = XmlParser.GetDivisions();
+        }
+
+        public SiteChecker(string siteName, string userName)
+        {
+            SiteName = siteName.StartsWith("http") ? siteName : "http://" + siteName;
+            XmlParser = new XmlParser(SiteName, SettingsManager.Settings.XmlFile);
+            Divisions = XmlParser.GetDivisions(userName);            
         }
 
         /// <summary>

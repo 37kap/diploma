@@ -173,6 +173,272 @@ namespace SiteInfoMonitoring.Core.Parsers
             return Divisions;
         }
 
+        public List<Division> GetDivisions(string userName)
+        {
+            Users = GetUserByName(userName);
+            Divisions = new List<Division>();
+            try
+            {
+                if (Users.Count == 0)
+                {
+                    throw new Exception("Пользователь в XML-файле не найден");
+                }
+                XmlDocument xDoc = new XmlDocument();
+                xDoc.Load(FilePath);
+                XmlNode xDivisions = xDoc.GetElementsByTagName("divisions")[0];
+                foreach (XmlNode xnode in xDivisions)
+                {
+                    Division div = new Division();
+                    bool needDiv = false;
+                    if (xnode.Attributes.Count > 0)
+                    {
+                        XmlNode attr = xnode.Attributes.GetNamedItem("show");
+                        if (attr != null)
+                        {
+                            bool.TryParse(attr.Value, out div.IsShowed);
+                        }
+                        attr = null;
+                        attr = xnode.Attributes.GetNamedItem("url");
+                        if (attr != null)
+                        {
+                            div.Url = new Uri(SiteName + "/" + attr.Value);
+                        }
+                        attr = null;
+                        attr = xnode.Attributes.GetNamedItem("des");
+                        if (attr != null)
+                        {
+                            div.Description = attr.Value;
+                        }
+                        attr = null;
+                        attr = xnode.Attributes.GetNamedItem("user");
+                        if (attr != null)
+                        {
+                            div.ResponsibleUser = Users.Any(u => u.Login == attr.Value) ? Users.First(u => u.Login == attr.Value) : null;
+                            if (div.ResponsibleUser != null && div.ResponsibleUser.Login == userName)
+                            {
+                                needDiv = true;
+                            }
+                        }
+                    }
+                    foreach (XmlNode info in xnode.ChildNodes)
+                    {
+                        if (info.Name == "data")
+                        {
+                            bool needData = needDiv ? true : false;
+                            var ip = new Itemprop();
+                            XmlNode attr = info.Attributes.GetNamedItem("itemprop");
+                            ip.Value = attr.Value;
+                            ip.Description = info.InnerText;
+                            attr = info.Attributes.GetNamedItem("type");
+                            if (attr != null)
+                            {
+                                switch (attr.Value.ToLower())
+                                {
+                                    case "optional":
+                                        ip.Type = ItempropTypeEnum.Optional;
+                                        break;
+                                    case "required":
+                                        ip.Type = ItempropTypeEnum.Required;
+                                        break;
+                                    case "selective":
+                                        ip.Type = ItempropTypeEnum.Selective;
+                                        break;
+                                }
+                            }
+                            attr = null;
+                            attr = info.Attributes.GetNamedItem("user");
+                            if (attr != null)
+                            {
+                                var us = Users.Any(u => u.Login == attr.Value) ? Users.First(u => u.Login == attr.Value) : null;
+                                if (us != div.ResponsibleUser)
+                                {
+                                    ip.ResponsibleUser = us;
+                                    if (needDiv)
+                                    {
+                                        needData = false;
+                                    }
+                                    else
+                                    {
+                                        if (us.Login == userName)
+                                        {
+                                            needData = true;
+                                        }
+                                    }
+                                }
+                            }
+                            if (needData)
+                            {
+                                div.AddInfo(ip);
+                            }
+                        }
+                        if (info.Name == "table")
+                        {
+                            bool needTbl = needDiv ? true : false;
+                            var table = new Table();
+                            XmlNode tableAttrType = info.Attributes.GetNamedItem("type");
+                            XmlNode tableAttrName = info.Attributes.GetNamedItem("name");
+                            if (tableAttrType != null)
+                            {
+                                switch (tableAttrType.Value.ToLower())
+                                {
+                                    case "optional":
+                                        table.Type = TableTypeEnum.Optional;
+                                        break;
+                                    case "required":
+                                        table.Type = TableTypeEnum.Required;
+                                        break;
+                                }
+                            }
+                            if (tableAttrName != null)
+                            {
+                                table.Name = tableAttrName.Value;
+                            }
+                            tableAttrName = null;
+                            tableAttrName = info.Attributes.GetNamedItem("user");
+                            if (tableAttrName != null)
+                            {
+                                var us = Users.Any(u => u.Login == tableAttrName.Value) ? Users.First(u => u.Login == tableAttrName.Value) : null;
+                                if (us != div.ResponsibleUser)
+                                {
+                                    table.ResponsibleUser = us;
+                                    if (needDiv)
+                                    {
+                                        needTbl = false;
+                                    }
+                                    else
+                                    {
+                                        if (us.Login == userName)
+                                        {
+                                            needTbl = true;
+                                        }
+                                    }
+                                }
+                            }
+                            foreach (XmlNode td in info.ChildNodes)
+                            {
+                                var tip = new TableItemprop();
+                                XmlNode attr = td.Attributes.GetNamedItem("itemprop");
+                                tip.Value = attr.Value;
+                                tip.Description = td.InnerText;
+                                attr = td.Attributes.GetNamedItem("type");
+                                if (attr != null)
+                                {
+                                    switch (attr.Value.ToLower())
+                                    {
+                                        case "optional":
+                                            tip.Type = ItempropTypeEnum.Optional;
+                                            break;
+                                        case "required":
+                                            tip.Type = ItempropTypeEnum.Required;
+                                            break;
+                                        case "selective":
+                                            tip.Type = ItempropTypeEnum.Selective;
+                                            break;
+                                    }
+                                }
+                                if (td.Name == "tr")
+                                {
+                                    tip.IsMainTag = true;
+                                }
+                                table.AddTableItemprop(tip);
+                            }
+                            if (needTbl)
+                            {
+                                div.AddTable(table);
+                            }
+                        }
+                    }
+                    if (needDiv || div.Data.Count > 0 || div.Tables.Count > 0)
+                    {
+                        Divisions.Add(div);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Divisions = new List<Division>();
+                Exception = ex;
+            }
+            return Divisions;
+        }
+
+        public List<User> GetUserByName(string userName)
+        {
+            try
+            {
+                Users = new List<User>();
+                XmlDocument xDoc = new XmlDocument();
+                xDoc.Load(FilePath);
+                XmlNode xDivisions = xDoc.GetElementsByTagName("users")[0];
+                foreach (XmlNode xnode in xDivisions)
+                {
+                    User us = new User();
+                    XmlNode attrLogin = xnode.Attributes.GetNamedItem("login");
+                    if (attrLogin != null)
+                    {
+                        us.Login = attrLogin.Value;
+                    }
+                    else
+                    {
+                        throw new Exception("Указаны не все атрибуты пользователя");
+                    }
+
+                    if (us.Login != userName)
+                    {
+                        continue;
+                    }
+
+                    XmlNode attrName = xnode.Attributes.GetNamedItem("name");
+                    if (attrName != null)
+                    {
+                        us.Name = attrName.Value;
+                    }
+                    else
+                    {
+                        throw new Exception("Указаны не все атрибуты пользователя");
+                    }
+
+                    XmlNode attrEmail = xnode.Attributes.GetNamedItem("email");
+                    if (attrEmail != null)
+                    {
+                        us.Email = attrEmail.Value;
+                    }
+                    else
+                    {
+                        throw new Exception("Указаны не все атрибуты пользователя");
+                    }
+
+                    XmlNode attrPass = xnode.Attributes.GetNamedItem("password");
+                    if (attrPass != null)
+                    {
+                        us.Password = attrPass.Value;
+                    }
+                    else
+                    {
+                        throw new Exception("Указаны не все атрибуты пользователя");
+                    }
+
+                    XmlNode attrRule = xnode.Attributes.GetNamedItem("rule");
+                    if (attrRule != null)
+                    {
+                        us.Role = attrRule.Value == "admin" ? RolesEnum.admin : RolesEnum.user;
+                    }
+                    else
+                    {
+                        us.Role = RolesEnum.user;
+                    }
+                    Users.Add(us);
+                    break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Users = new List<User>();
+                Exception = ex;
+            }
+            return Users;
+        }
+
         public List<User> GetUsers()
         {
             try

@@ -50,8 +50,7 @@ namespace SiteInfoMonitoring.Core.Parsers
                 if (Users[i].Problems.Count > 0)
                 {
                     var mssg = String.Join("\n", Users[i].Problems.ToArray());
-                    var email = new EmailSender(Users[i].Email, mssg);
-                    email.Send();
+                    EmailSender.Send(Users[i].Email, mssg);
                 }
             }
         }

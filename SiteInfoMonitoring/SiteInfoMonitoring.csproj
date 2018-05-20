@@ -162,6 +162,7 @@
     <Compile Include="Controllers\DivisionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
+    <Compile Include="Core\EmailCreater.cs" />
     <Compile Include="Core\Enums\ItempropTypeEnum.cs" />
     <Compile Include="Core\Enums\RolesEnum.cs" />
     <Compile Include="Core\Enums\TableTypeEnum.cs" />
@@ -172,12 +173,12 @@
     <Compile Include="Core\Settings\CurrentAppSettings.cs" />
     <Compile Include="Core\Settings\JsonConfigSerializer.cs" />
     <Compile Include="Core\Settings\NoCache.cs" />
+    <Compile Include="Core\Settings\SettingsManager.cs" />
     <Compile Include="Core\SiteChecker.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Jobs\EmailSender.cs" />
-    <Compile Include="Jobs\EmailSheduler.cs" />
     <Compile Include="Jobs\SiteAnalysiser.cs" />
     <Compile Include="Jobs\SiteAnalysisSheduler.cs" />
     <Compile Include="Models\Division.cs" />

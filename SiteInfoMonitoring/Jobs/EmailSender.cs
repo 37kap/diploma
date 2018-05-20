@@ -1,57 +1,35 @@
 ﻿using Quartz;
+using SiteInfoMonitoring.Controllers;
+using SiteInfoMonitoring.Core.Settings;
+using SiteInfoMonitoring.Models;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace SiteInfoMonitoring.Jobs
 {
-    public class EmailSender : IJob
+    public static class EmailSender
     {
-        private string Email;
-        private string Message;
-        public EmailSender(string email, string message)
+        public static async void Send(string email, string messageBody)
         {
-            Email = email;
-            Message = message;
-        }
-        public void Send()
-        {
-            using (var message = new MailMessage("noreplyisuct@gmail.com", Email))
+            using (var message = new MailMessage(SettingsManager.Settings.SmtpLogin, email))
             {
                 message.Subject = "Результат проверки обязательного раздела сайта образовательной организации";
-                message.Body = Message;
+                message.Body = messageBody;
                 using (SmtpClient client = new SmtpClient
                 {
                     EnableSsl = true,
-                    Host = "smtp.gmail.com",
+                    Host = SettingsManager.Settings.SmtpHost,
                     Port = 587,
-                    Credentials = new NetworkCredential("noreplyisuct@gmail.com", "sqaynmbmuhojcgrh") //isuct123
-                })
-                {
-                    client.SendMailAsync(message);
-                }
-            }
-        }
-
-        public async Task Execute(IJobExecutionContext context)
-        {
-            using (var message = new MailMessage("noreplyisuct@gmail.com", "kap120796@gmail.com"))
-            {
-                message.Subject = "Результат проверки обязательного раздела сайта образовательной организации";
-                //TODO: change body of email of job
-                message.Body = "Message body test at " + DateTime.Now;
-                using (SmtpClient client = new SmtpClient
-                {
-                    EnableSsl = true,
-                    Host = "smtp.gmail.com",
-                    Port = 587,
-                    Credentials = new NetworkCredential("noreplyisuct@gmail.com", "sqaynmbmuhojcgrh") //isuct123
+                    Credentials = new NetworkCredential(SettingsManager.Settings.SmtpLogin, SettingsManager.Settings.SmtpPassword) //Pass: sqaynmbmuhojcgrh || isuct123
                 })
                 {
                     await client.SendMailAsync(message);
                 }
             }
         }
+
     }
 }

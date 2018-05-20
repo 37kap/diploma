@@ -15,6 +15,7 @@ namespace SiteInfoMonitoring.Controllers
 
         public SettingController(IConfigService<CurrentAppSettings> configService)
         {
+            SettingsManager.Settings = configService.Config;
             configService.Reload();
             _configService = configService;
         }
@@ -25,6 +26,22 @@ namespace SiteInfoMonitoring.Controllers
             if (IsAdminUser())
             {
                 var settings = _configService.Config;
+                return View(settings);
+            }
+            else
+            {
+                return Redirect("/Home/Index");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Index(CurrentAppSettings settings)
+        {
+            if (IsAdminUser())
+            {
+                _configService.SaveChanges(settings);
+                SettingsManager.Settings = settings;
+                ViewBag.ResultOfSave = "Настройки успешно сохранены.";
                 return View(settings);
             }
             else
@@ -51,6 +68,11 @@ namespace SiteInfoMonitoring.Controllers
                 }
             }
             return false;
+        }
+
+        public CurrentAppSettings GetSettings()
+        {
+            return _configService.Config;
         }
     }
 }

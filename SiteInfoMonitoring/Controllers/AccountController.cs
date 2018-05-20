@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using SiteInfoMonitoring.Models;
 using SiteInfoMonitoring.Core;
 using SiteInfoMonitoring.Core.Parsers;
+using SiteInfoMonitoring.Jobs;
+using System.Threading;
 
 namespace SiteInfoMonitoring.Controllers
 {
@@ -29,6 +31,7 @@ namespace SiteInfoMonitoring.Controllers
                 User user = null;
 
                 user = users.FirstOrDefault(u => u.Login == model.Name && u.Password == model.Password);
+                //new Thread(t => EmailSender.Send(user.Email, "Ты в сети")).Start();
                 if (user != null)
                 {
                     FormsAuthentication.SetAuthCookie(model.Name, true);
@@ -40,7 +43,6 @@ namespace SiteInfoMonitoring.Controllers
                     ModelState.AddModelError("", "Пользователя с таким логином и паролем нет");
                 }
             }
-
             return View(model);
         }
 

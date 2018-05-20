@@ -1,4 +1,5 @@
 ﻿using Quartz;
+using SiteInfoMonitoring.Core.Settings;
 using System;
 using System.Net;
 using System.Net.Mail;
@@ -10,7 +11,7 @@ namespace SiteInfoMonitoring.Jobs
     {
         public async Task Execute(IJobExecutionContext context)
         {
-            using (var message = new MailMessage("noreplyisuct@gmail.com", "kap120796@gmail.com"))
+            using (var message = new MailMessage(SettingsManager.Settings.SmtpLogin, "kap120796@gmail.com"))
             {
                 message.Subject = "Результат проверки обязательного раздела сайта образовательной организации";
                 //TODO: change body of email of job
@@ -18,13 +19,14 @@ namespace SiteInfoMonitoring.Jobs
                 using (SmtpClient client = new SmtpClient
                 {
                     EnableSsl = true,
-                    Host = "smtp.gmail.com",
+                    Host = SettingsManager.Settings.SmtpHost,
                     Port = 587,
-                    Credentials = new NetworkCredential("noreplyisuct@gmail.com", "sqaynmbmuhojcgrh") //isuct123
+                    Credentials = new NetworkCredential(SettingsManager.Settings.SmtpLogin, SettingsManager.Settings.SmtpPassword) //Pass: sqaynmbmuhojcgrh || isuct123
                 })
                 {
                     await client.SendMailAsync(message);
                 }
             }
         }
+    }
 }

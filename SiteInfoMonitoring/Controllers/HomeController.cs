@@ -1,4 +1,6 @@
-﻿using SiteInfoMonitoring.Core.Parsers;
+﻿using Calabonga.Portal.Config;
+using SiteInfoMonitoring.Core.Parsers;
+using SiteInfoMonitoring.Core.Settings;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -6,6 +8,14 @@ namespace SiteInfoMonitoring.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IConfigService<CurrentAppSettings> _configService;
+
+        public HomeController(IConfigService<CurrentAppSettings> configService)
+        {
+            SettingsManager.Settings = configService.Config;
+            configService.Reload();
+            _configService = configService;
+        }
         public ActionResult Index()
         {
             return View();
@@ -14,6 +24,7 @@ namespace SiteInfoMonitoring.Controllers
         [Authorize]
         public ActionResult Analysis()
         {
+            ViewBag.SiteName = SettingsManager.Settings.DefaultSiteAddress;
             return View();
         }
 

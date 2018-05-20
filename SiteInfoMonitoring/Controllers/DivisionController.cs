@@ -1,6 +1,8 @@
 ﻿using SiteInfoMonitoring.Core;
 using SiteInfoMonitoring.Core.Parsers;
+using SiteInfoMonitoring.Core.Settings;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace SiteInfoMonitoring.Controllers
@@ -19,7 +21,15 @@ namespace SiteInfoMonitoring.Controllers
         {
             if (name != null)
             {
-                var siteChecker = new SiteChecker(name);
+                SiteChecker siteChecker;
+                if (IsAdminUser())
+                {
+                    siteChecker = new SiteChecker(name);                    
+                }
+                else
+                {
+                    siteChecker = new SiteChecker(name, User.Identity.Name);
+                }
                 ViewBag.SiteAvailability = "Сайт " + name + (siteChecker.CheckSiteAvailability() ? " доступен" : " недоступен");
                 var divs = siteChecker.CheckDivisionsExist();
                 if (siteChecker.XmlParser.Exception != null)
@@ -27,14 +37,34 @@ namespace SiteInfoMonitoring.Controllers
                     ViewBag.Exception = siteChecker.XmlParser.Exception;
                 }
                 var htmlParser = new EduSiteParser(name, divs, siteChecker.XmlParser.GetUsers());
-                //htmlParser.StartParse();
+                htmlParser.StartParse();
                 return View(divs);
             }
             else
             {
-                var divs = new List<Models.Division>();
+                List<Models.Division> divs = null;
                 return View(divs);
             }
+        }
+
+        public bool IsAdminUser()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = new XmlParser().GetUsers().FirstOrDefault(u => u.Login == User.Identity.Name);
+                if (user != null)
+                {
+                    if (user.Role == Core.Enums.RolesEnum.admin)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

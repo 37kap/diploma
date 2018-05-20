@@ -7,53 +7,37 @@
     <div class="page-header">
         <h2>
             @ViewBag.Title
-            <small>view</small>
         </h2>
     </div>
     <div class="col-md-12">
         @using (Html.BeginForm())
-        {
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(x => x.XmlFile)
+            @Html.TextBoxFor(x => x.XmlFile, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.DefaultSiteAddress)
+            @Html.TextBoxFor(x => x.DefaultSiteAddress, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.SmtpLogin)
+            @Html.TextBoxFor(x => x.SmtpLogin, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.SmtpPassword)
+            @Html.TextBoxFor(x => x.SmtpPassword, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.SmtpHost)
+            @Html.TextBoxFor(x => x.SmtpHost, new { @class = "form-control" })
+        </div>
+        <p>
+            <input type="submit" value="Сохранить" class="btn btn-primary" />
+        </p>
 
-            @Html.ValidationSummary()
-            @Html.AntiForgeryToken()
-
-            <div class="form-group">
-                @Html.LabelFor(x => x.IsLogging)<br />
-                @Html.CheckBoxFor(x => x.IsLogging)
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(x => x.IsHtmlForEmailMessagesEnabled)<br />
-                @Html.CheckBoxFor(x => x.IsHtmlForEmailMessagesEnabled)
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(x => x.AdminEmail)
-                @Html.TextBoxFor(x => x.AdminEmail, new { @class = "form-control" })
-                @Html.ValidationMessageFor(x => x.AdminEmail)
-            </div><div class="form-group">
-                @Html.LabelFor(x => x.RobotEmail)
-                @Html.TextBoxFor(x => x.RobotEmail, new { @class = "form-control" })
-                @Html.ValidationMessageFor(x => x.RobotEmail)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(x => x.SmtpClient)
-                @Html.TextBoxFor(x => x.SmtpClient, new { @class = "form-control" })
-                @Html.ValidationMessageFor(x => x.SmtpClient)
-            </div> <div class="form-group">
-                @Html.LabelFor(x => x.DomainUrl)
-                @Html.TextBoxFor(x => x.DomainUrl, new { @class = "form-control" })
-                @Html.ValidationMessageFor(x => x.DomainUrl)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(x => x.DefaultPagerSize)
-                @Html.TextBoxFor(x => x.DefaultPagerSize, new { @class = "form-control" })
-                @Html.ValidationMessageFor(x => x.DefaultPagerSize)
-            </div>
-
-            <p>
-                <button class="btn btn-primary">Сохраннить</button>
-            </p>
-        }
+        @ViewBag.ResultOfSave
+}
     </div>
 </div>
