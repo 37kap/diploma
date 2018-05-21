@@ -187,6 +187,7 @@
     <Compile Include="Models\Table.cs" />
     <Compile Include="Models\TableItemprop.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserProblems.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

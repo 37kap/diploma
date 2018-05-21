@@ -5,39 +5,55 @@
 
 <div class="row">
     <div class="page-header">
-        <h2>
+        <h2 style="text-align: center">
             @ViewBag.Title
         </h2>
     </div>
     <div class="col-md-12">
         @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        <div class="form-group">
-            @Html.LabelFor(x => x.XmlFile)
-            @Html.TextBoxFor(x => x.XmlFile, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(x => x.DefaultSiteAddress)
-            @Html.TextBoxFor(x => x.DefaultSiteAddress, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(x => x.SmtpLogin)
-            @Html.TextBoxFor(x => x.SmtpLogin, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(x => x.SmtpPassword)
-            @Html.TextBoxFor(x => x.SmtpPassword, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(x => x.SmtpHost)
-            @Html.TextBoxFor(x => x.SmtpHost, new { @class = "form-control" })
-        </div>
-        <p>
-            <input type="submit" value="Сохранить" class="btn btn-primary" />
-        </p>
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                @Html.LabelFor(x => x.XmlFile)
+                @Html.TextBoxFor(x => x.XmlFile, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.DefaultSiteAddress)
+                @Html.TextBoxFor(x => x.DefaultSiteAddress, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.SmtpLogin)
+                @Html.TextBoxFor(x => x.SmtpLogin, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.SmtpPassword)
+                @Html.TextBoxFor(x => x.SmtpPassword, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.SmtpHost)
+                @Html.TextBoxFor(x => x.SmtpHost, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.CheckBoxFor(x => x.SendEmails)
+                @Html.LabelFor(x => x.SendEmails)
+            </div>
+            <div class="form-group">
+                @Html.CheckBoxFor(x => x.AutoSendEmailsToAdmin)
+                @Html.LabelFor(x => x.AutoSendEmailsToAdmin)
+            </div>
+            <div class="form-group">
+                @Html.CheckBoxFor(x => x.AutoAnalysis)
+                @Html.LabelFor(x => x.AutoAnalysis)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.DateAutoAnalysis)
+                @Html.TextBoxFor(x => x.DateAutoAnalysis, new { @class = "form-control" })
+            </div>
+            <p>
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </p>
 
-        @ViewBag.ResultOfSave
-}
+            @ViewBag.ResultOfSave
+        }
     </div>
 </div>

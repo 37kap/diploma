@@ -31,7 +31,7 @@ namespace SiteInfoMonitoring.Controllers
                 User user = null;
 
                 user = users.FirstOrDefault(u => u.Login == model.Name && u.Password == model.Password);
-                //new Thread(t => EmailSender.Send(user.Email, "Ты в сети")).Start();
+                
                 if (user != null)
                 {
                     FormsAuthentication.SetAuthCookie(model.Name, true);

@@ -1,4 +1,5 @@
 ﻿using Calabonga.Portal.Config;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SiteInfoMonitoring.Core.Settings
@@ -19,5 +20,17 @@ namespace SiteInfoMonitoring.Core.Settings
 
         [Display(Name = "Имя XML-файла")]
         public string XmlFile { get; set; }
+
+        [Display(Name = "Отправлять письмо с результатом после проверки в ручном режиме")]
+        public bool SendEmails { get; set; }
+
+        [Display(Name = "Отправлять администраторам письмо с результатом после проверки в автоматическом режиме")]
+        public bool AutoSendEmailsToAdmin { get; set; }
+
+        [Display(Name = "Автоматическая проверка")]
+        public bool AutoAnalysis { get; set; }
+
+        [Display(Name = "Как часто проводить автоматическую проверку? Каждые X дней")]
+        public int DateAutoAnalysis { get; set; }
     }
 }

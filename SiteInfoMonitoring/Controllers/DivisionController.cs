@@ -1,6 +1,7 @@
 ﻿using SiteInfoMonitoring.Core;
 using SiteInfoMonitoring.Core.Parsers;
 using SiteInfoMonitoring.Core.Settings;
+using SiteInfoMonitoring.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -22,27 +23,31 @@ namespace SiteInfoMonitoring.Controllers
             if (name != null)
             {
                 SiteChecker siteChecker;
+                EduSiteParser htmlParser;
+                List<Division> divs;
                 if (IsAdminUser())
                 {
-                    siteChecker = new SiteChecker(name);                    
+                    siteChecker = new SiteChecker(name);
+                    divs = siteChecker.CheckDivisionsExist();
+                    htmlParser = new EduSiteParser(name, divs, siteChecker.XmlParser.GetUsers());
                 }
                 else
                 {
                     siteChecker = new SiteChecker(name, User.Identity.Name);
+                    divs = siteChecker.CheckDivisionsExist();
+                    htmlParser = new EduSiteParser(name, divs, siteChecker.XmlParser.GetUserByName(User.Identity.Name));
                 }
-                ViewBag.SiteAvailability = "Сайт " + name + (siteChecker.CheckSiteAvailability() ? " доступен" : " недоступен");
-                var divs = siteChecker.CheckDivisionsExist();
+                ViewBag.SiteAvailability = "Сайт " + name + (siteChecker.CheckSiteAvailability() ? " доступен" : " недоступен");                
                 if (siteChecker.XmlParser.Exception != null)
                 {
                     ViewBag.Exception = siteChecker.XmlParser.Exception;
                 }
-                var htmlParser = new EduSiteParser(name, divs, siteChecker.XmlParser.GetUsers());
                 htmlParser.StartParse();
                 return View(divs);
             }
             else
             {
-                List<Models.Division> divs = null;
+                List<Division> divs = null;
                 return View(divs);
             }
         }

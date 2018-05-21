@@ -1,9 +1,11 @@
 ﻿using Calabonga.Portal.Config;
 using SiteInfoMonitoring.Core.Parsers;
 using SiteInfoMonitoring.Core.Settings;
+using SiteInfoMonitoring.Jobs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -41,6 +43,11 @@ namespace SiteInfoMonitoring.Controllers
             {
                 _configService.SaveChanges(settings);
                 SettingsManager.Settings = settings;
+                SiteAnalysisSheduler.Stop();
+                if (SettingsManager.Settings.AutoAnalysis && SettingsManager.Settings.DateAutoAnalysis > 0)
+                {
+                    new Thread(t => SiteAnalysisSheduler.Start()).Start();
+                }
                 ViewBag.ResultOfSave = "Настройки успешно сохранены.";
                 return View(settings);
             }

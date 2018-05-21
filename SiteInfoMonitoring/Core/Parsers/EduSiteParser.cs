@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using AngleSharp.Dom;
 using AngleSharp.Dom.Html;
 using AngleSharp.Parser.Html;
@@ -25,8 +26,17 @@ namespace SiteInfoMonitoring.Core.Parsers
             Users = users;
         }
 
-        public void StartParse()
+        public void StartParse(bool siteNotFound = false, bool auto = false)
         {
+            if (siteNotFound)
+            {
+                var admins = Users.Any(u => u.Role == Enums.RolesEnum.admin) ? Users.Where(u => u.Role == Enums.RolesEnum.admin) : null;
+                foreach (var admin in admins)
+                {
+                    new Thread(t => EmailSender.Send(admin.Email, "Сайт " + Settings.SettingsManager.Settings.DefaultSiteAddress + " недоступен.")).Start();
+                }
+                return;
+            }
             for (int i = 0; i < Divisions.Count; i++)
             {
                 var parser = new HtmlParser();
@@ -38,20 +48,14 @@ namespace SiteInfoMonitoring.Core.Parsers
                     var document = parser.Parse(GetCode(url));
                     ParsePage(Divisions[i], document);
                 }
-                //Если что-то не так с разделом то записываем проблему
-                //TODO: Сменить условие и текст проблемы
-                if (Divisions.Count > 10000)
-                {
-                    Divisions[i].ResponsibleUser.Problems.Add(Divisions[i].Description + ": " + "Ошибка");
-                }
             }
-            for (int i = 0; i < Users.Count; i++)
+            if (Settings.SettingsManager.Settings.SendEmails && !auto)
             {
-                if (Users[i].Problems.Count > 0)
-                {
-                    var mssg = String.Join("\n", Users[i].Problems.ToArray());
-                    EmailSender.Send(Users[i].Email, mssg);
-                }
+                EmailCreater.CreateInfoEmails(Users, Divisions);
+            }
+            if (Settings.SettingsManager.Settings.AutoAnalysis && auto)
+            {
+                EmailCreater.CreateInfoEmails(Users, Divisions, auto);
             }
         }
 

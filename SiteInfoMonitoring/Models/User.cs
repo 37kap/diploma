@@ -10,6 +10,6 @@ namespace SiteInfoMonitoring.Models
         public string Login;
         public string Password;
         public RolesEnum Role;
-        public List<string> Problems = new List<string>();
+        public List<UserProblems> Problems = new List<UserProblems> ();
     }
 }
