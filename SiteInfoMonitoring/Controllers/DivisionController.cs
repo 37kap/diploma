@@ -45,11 +45,11 @@ namespace SiteInfoMonitoring.Controllers
                     {
                         ViewBag.Exception = siteChecker.XmlParser.Exception;
                     }
-                    htmlParser.StartParse();
+                    htmlParser.StartParse(false, siteChecker.XmlParser.LoadUserByName(User.Identity.Name));
                 }
                 catch
                 {
-                    if (siteChecker.XmlException.InnerException.Message == "Отсутствует корневой элемент.")
+                    if (siteChecker.XmlException!= null && siteChecker.XmlException.InnerException != null && siteChecker.XmlException.InnerException.Message == "Отсутствует корневой элемент.")
                     {
                         ViewBag.Exception = "Не найден XML-файл с описанием страниц обязательного раздела по пути \"" + SettingsManager.Settings.XmlFileDivisions + "\"";
                     }

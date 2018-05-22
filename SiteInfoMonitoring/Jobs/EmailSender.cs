@@ -18,6 +18,7 @@ namespace SiteInfoMonitoring.Jobs
             {
                 message.Subject = "Результат проверки обязательного раздела сайта образовательной организации";
                 message.Body = messageBody;
+                message.IsBodyHtml = true;
                 using (SmtpClient client = new SmtpClient
                 {
                     EnableSsl = true,

@@ -13,17 +13,22 @@ namespace SiteInfoMonitoring.Core
         {
             bool needSendToAdmins = false;
             var adminProblems = new List<UserProblems>();
-            if (Settings.SettingsManager.Settings.AutoSendEmailsToAdmin || auto)
+            if (Settings.SettingsManager.Settings.AutoSendEmailsToAdmin && auto)
             {
                 needSendToAdmins = true;
+            }
+            if (Users.Count == 1 && Users.First().Role == Enums.RolesEnum.admin && !auto)
+            {
+                needSendToAdmins = true;
+
             }
             foreach (var div in Divisions)
             {
                 UserProblems adminProblem = new UserProblems() { Division = div };
-                var user = div.ResponsibleUser != null ? Users.First(u => u.Login == div.ResponsibleUser.Login) : null;
+                var user = div.ResponsibleUser != null ? Users.Any(u => u.Login == div.ResponsibleUser.Login) ? Users.First(u => u.Login == div.ResponsibleUser.Login) : null : null;
                 if (user != null)
                 {
-                    user.Problems = new List<UserProblems>();
+                    if (user.Problems == null) { user.Problems = new List<UserProblems>(); }
                     var problem = new UserProblems() { Division = div };
                     if (!div.IsExist)
                     {
@@ -40,12 +45,19 @@ namespace SiteInfoMonitoring.Core
                 {
                     if (!data.IsExist && data.Type != Enums.ItempropTypeEnum.Optional)
                     {
-                        var dataUser = data.ResponsibleUser != null ? Users.First(u => u.Login == data.ResponsibleUser.Login) : user;
+                        var dataUser = data.ResponsibleUser != null ? Users.Any(u => u.Login == data.ResponsibleUser.Login) ? Users.First(u => u.Login == data.ResponsibleUser.Login) : null : user;
                         if (dataUser != null)
                         {
                             var dataProblem = dataUser.Problems.Any(p => p.Division == div) ? dataUser.Problems.First(p => p.Division == div) : new UserProblems() { Division = div };
-                            dataProblem.Items.Add("Атрибут \"" + data.Value + "\" (" + data.Description + ") не найден");
-                            dataUser.Problems.Add(dataProblem);
+                            if (dataProblem.Items.Count != 0)
+                            {
+                                dataProblem.Items.Add("Атрибут \"" + data.Value + "\" (" + data.Description + ") не найден");
+                            }
+                            else
+                            {
+                                dataProblem.Items.Add("Атрибут \"" + data.Value + "\" (" + data.Description + ") не найден");
+                                dataUser.Problems.Add(dataProblem);
+                            }
                         }
                         if (needSendToAdmins)
                         {
@@ -53,21 +65,26 @@ namespace SiteInfoMonitoring.Core
                         }
                     }
                 }
-                foreach (var tbl in div.Tables)
+                foreach (var tbl in div.Tables.Where(t => t.Type != Enums.TableTypeEnum.Optional))
                 {
-                    var tableUser = tbl.ResponsibleUser != null ? Users.First(u => u.Login == tbl.ResponsibleUser.Login) : user;
+                    var tableUser = tbl.ResponsibleUser != null ? Users.Any(u => u.Login == tbl.ResponsibleUser.Login) ? Users.First(u => u.Login == tbl.ResponsibleUser.Login) : null : user;
                     if (tableUser != null)
                     {
                         var tableProblem = tableUser.Problems.Any(p => p.Division == div) ? tableUser.Problems.First(p => p.Division == div) : new UserProblems() { Division = div };
                         if (!tbl.IsOk)
                         {
-                            tableProblem.Items.Add("Таблица \"" + tbl.Name + "\":");
-                            tableProblem.Items.Add("Данная таблица не соответствует методическим рекомендациям");
-                            tableUser.Problems.Add(tableProblem);
+                            if (tableProblem.Items.Count != 0)
+                            {
+                                tableProblem.Items.Add("Таблица \"" + tbl.Name + "\" не соответствует методическим рекомендациям");
+                            }
+                            else
+                            {
+                                tableProblem.Items.Add("Таблица \"" + tbl.Name + "\" не соответствует методическим рекомендациям");
+                                tableUser.Problems.Add(tableProblem);
+                            }
                             if (needSendToAdmins)
                             {
-                                adminProblem.Items.Add("Таблица \"" + tbl.Name + "\":");
-                                adminProblem.Items.Add("Данная таблица не соответствует методическим рекомендациям");
+                                adminProblem.Items.Add("Таблица \"" + tbl.Name + "\" не соответствует методическим рекомендациям");
                             }
                             continue;
                         }
@@ -82,13 +99,18 @@ namespace SiteInfoMonitoring.Core
                             }
                             else
                             {
-                                tableProblem.Items.Add("Таблица \"" + tbl.Name + "\":");
-                                tableProblem.Items.Add("Данная таблица не соответствует методическим рекомендациям");
-                                tableUser.Problems.Add(tableProblem);
+                                if (tableProblem.Items.Count != 0)
+                                {
+                                    tableProblem.Items.Add("Таблица \"" + tbl.Name + "\" не соответствует методическим рекомендациям");
+                                }
+                                else
+                                {
+                                    tableProblem.Items.Add("Таблица \"" + tbl.Name + "\" не соответствует методическим рекомендациям");
+                                    tableUser.Problems.Add(tableProblem);
+                                }
                                 if (needSendToAdmins)
                                 {
-                                    adminProblem.Items.Add("Таблица \"" + tbl.Name + "\":");
-                                    adminProblem.Items.Add("Данная таблица не соответствует методическим рекомендациям");
+                                    adminProblem.Items.Add("Таблица \"" + tbl.Name + "\" не соответствует методическим рекомендациям");
                                 }
                                 break;
                             }
@@ -98,8 +120,7 @@ namespace SiteInfoMonitoring.Core
                     {
                         if (!tbl.IsOk)
                         {
-                            adminProblem.Items.Add("Таблица \"" + tbl.Name + "\":");
-                            adminProblem.Items.Add("Данная таблица не соответствует методическим рекомендациям");
+                            adminProblem.Items.Add("Таблица \"" + tbl.Name + "\" не соответствует методическим рекомендациям");
                             continue;
                         }
                         foreach (var tip in tbl.TableItemprops)
@@ -113,8 +134,7 @@ namespace SiteInfoMonitoring.Core
                             }
                             else
                             {
-                                adminProblem.Items.Add("Таблица \"" + tbl.Name + "\":");
-                                adminProblem.Items.Add("Данная таблица не соответствует методическим рекомендациям");
+                                adminProblem.Items.Add("Таблица \"" + tbl.Name + "\" не соответствует методическим рекомендациям");
                                 break;
                             }
                         }
@@ -127,24 +147,28 @@ namespace SiteInfoMonitoring.Core
             }
             foreach (var usr in Users)
             {
-                string mssg = "";
-                string adminMssg = "";
+                string mssg = usr.Problems.Count > 0 ? "<h4>Здравствуйте, " + usr.Name + "! <p>В результате проверки обязательного раздела сайта образовательной организации выявлен ряд недочетов:</p></h4>" : "";
+                string adminMssg = adminProblems.Count > 0 ? "<h4>Здравствуйте, " + usr.Name + "! <p>В результате проверки обязательного раздела сайта образовательной организации выявлен ряд недочетов:</p></h4>" : "";
                 foreach (var problem in usr.Problems)
                 {
-                    mssg += "\nРаздел \"" + problem.Division.Description + "\": \n";
-                    mssg += String.Join("\n", problem.Items);
+                    mssg += "<h4>Раздел \"" + problem.Division.Description + "\":</h4><ul><li>";
+                    mssg += String.Join("</li><li>", problem.Items);
+                    mssg += "</li></ul>";
                 }
                 foreach (var problem in adminProblems)
                 {
-                    adminMssg += "\nРаздел \"" + problem.Division.Description + "\": \n";
-                    adminMssg += String.Join("\n", problem.Items);
+                    adminMssg += "<h4>Раздел \"" + problem.Division.Description + "\":</h4><ul><li>";
+                    adminMssg += String.Join("</li><li>", problem.Items);
+                    adminMssg += "</li></ul>";
                 }
                 if (mssg != "" && usr.Role == Enums.RolesEnum.user)
                 {
+                    mssg += "<hr><p>Для получения подробной информации, проведите проверку сайта в ручном режиме.</p>";
                     new Thread(t => EmailSender.Send(usr.Email, mssg)).Start();
                 }
                 if (adminMssg != "" && usr.Role == Enums.RolesEnum.admin)
                 {
+                    adminMssg += "<hr><p>Для получения подробной информации, проведите проверку сайта в ручном режиме.</p>";
                     new Thread(t => EmailSender.Send(usr.Email, adminMssg)).Start();
                 }
             }

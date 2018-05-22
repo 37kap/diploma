@@ -26,7 +26,7 @@ namespace SiteInfoMonitoring.Core.Parsers
             Users = users;
         }
 
-        public void StartParse(bool siteNotFound = false, bool auto = false)
+        public void StartParse(bool siteNotFound = false, User user = null, bool auto = false)
         {
             if (siteNotFound)
             {
@@ -49,9 +49,9 @@ namespace SiteInfoMonitoring.Core.Parsers
                     ParsePage(Divisions[i], document);
                 }
             }
-            if (Settings.SettingsManager.Settings.SendEmails && !auto)
+            if (user != null && Settings.SettingsManager.Settings.SendEmails && !auto)
             {
-                EmailCreater.CreateInfoEmails(Users, Divisions);
+                EmailCreater.CreateInfoEmails(new List<User>() { user }, Divisions);
             }
             if (Settings.SettingsManager.Settings.AutoAnalysis && auto)
             {
