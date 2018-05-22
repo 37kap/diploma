@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SiteInfoMonitoring.Models.User>
+@{
+    ViewBag.Title = "Пользователи";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <h3 style="text-align: center">@ViewBag.Title</h3>
+    <hr>
+    <table class="table table-bordered">
+        <tr class="header">
+            <td><p>Логин</p></td>
+            <td><p>Пароль</p></td>
+            <td><p>Имя</p></td>
+            <td><p>Email</p></td>
+            <td><p>Права</p></td>
+            <td><p>Изменить права</p></td>
+            <td><p>Удалить</p></td>
+        </tr>
+        @foreach (SiteInfoMonitoring.Models.User u in Model)
+        {
+            <tr>
+                <td><p>@u.Login</p></td>
+                <td><p>@u.Password</p></td>
+                <td><p>@u.Name</p></td>
+                <td><p>@u.Email</p></td>
+                <td><p>@(u.Role == SiteInfoMonitoring.Core.Enums.RolesEnum.admin ? "Администратор" : "Пользователь")</p></td>
+                @if (u.Role == SiteInfoMonitoring.Core.Enums.RolesEnum.user)
+                {
+                    <td><p><a href="/User/Rerole?userLogin=@u.Login">Сделать администратором</a></p></td>
+                }
+                else
+                {
+                    if (u.Login != ViewBag.CurrentUser)
+                    {
+                        <td><p><a href="/User/Rerole?userLogin=@u.Login">Сделать пользователем</a></p></td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                }
+                @if (u.Login != ViewBag.CurrentUser)
+                {
+                    <td><p><a href="/User/Delete?userLogin=@u.Login">Удалить</a></p></td>
+                }
+                else
+                {
+                    <td></td>
+                }
+            </tr>
+        }
+    </table>
+    <form method="get" action="/User/Add">
+        <p>
+            <input type="submit" value="Добавить" class="btn btn-primary" />
+        </p>
+    </form>
+    @ViewBag.ResultOfSave
+</div>

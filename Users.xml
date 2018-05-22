@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<ArrayOfUserSerializable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <UserSerializable>
+    <Name>Константин Панов</Name>
+    <Email>kap120796@gmail.com</Email>
+    <Login>kap37</Login>
+    <Password>1q2w3e4r</Password>
+    <Role>admin</Role>
+  </UserSerializable>
+  <UserSerializable>
+    <Name>Просто пользователь</Name>
+    <Email>kap120796@mail.ru</Email>
+    <Login>user1</Login>
+    <Password>password1</Password>
+    <Role>user</Role>
+  </UserSerializable>
+  <UserSerializable>
+    <Name>Полина Белова</Name>
+    <Email>polinabelova96@mail.ru</Email>
+    <Login>bep37</Login>
+    <Password>741852963</Password>
+    <Role>admin</Role>
+  </UserSerializable>
+</ArrayOfUserSerializable>

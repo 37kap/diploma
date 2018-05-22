@@ -14,8 +14,12 @@
         {
             @Html.AntiForgeryToken()
             <div class="form-group">
-                @Html.LabelFor(x => x.XmlFile)
-                @Html.TextBoxFor(x => x.XmlFile, new { @class = "form-control" })
+                @Html.LabelFor(x => x.XmlFileDivisions)
+                @Html.TextBoxFor(x => x.XmlFileDivisions, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.XmlFileUsers)
+                @Html.TextBoxFor(x => x.XmlFileUsers, new { @class = "form-control" })
             </div>
             <div class="form-group">
                 @Html.LabelFor(x => x.DefaultSiteAddress)

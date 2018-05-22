@@ -4,6 +4,7 @@
 {
     if (ViewBag.IsAdminUser == true)
     {
+        <li>@Html.ActionLink("Пользователи", "Index", "User")</li>
         <li>@Html.ActionLink("Настройки", "Index", "Setting")</li>
     }
     <li>@Html.ActionLink("Выход", "Logoff", "Account")</li>

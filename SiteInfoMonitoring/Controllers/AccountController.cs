@@ -16,7 +16,7 @@ namespace SiteInfoMonitoring.Controllers
     {
         public ActionResult Login()
         {
-            users = new XmlParser().GetUsers();
+            users = new XmlParser().LoadUsers();
             return View();
         }
 

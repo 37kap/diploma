@@ -61,7 +61,7 @@ namespace SiteInfoMonitoring.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var user = new XmlParser().GetUsers().FirstOrDefault(u => u.Login == User.Identity.Name);
+                var user = new XmlParser().LoadUsers().FirstOrDefault(u => u.Login == User.Identity.Name);
                 if (user != null)
                 {
                     if (user.Role == Core.Enums.RolesEnum.admin)

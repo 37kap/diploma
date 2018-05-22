@@ -19,7 +19,7 @@ namespace SiteInfoMonitoring.Jobs
             {
                 siteChecker = new SiteChecker(siteName);
                 List<Division> divs = siteChecker.CheckDivisionsExist();
-                htmlParser = new EduSiteParser(siteName, divs, siteChecker.XmlParser.GetUsers());
+                htmlParser = new EduSiteParser(siteName, divs, siteChecker.XmlParser.LoadUsers());
                 htmlParser.StartParse(!siteChecker.CheckSiteAvailability(), true);
             }
         }

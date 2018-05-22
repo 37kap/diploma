@@ -1,257 +1,1288 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<site>
-	<divisions>
-		<division show="true" url="sveden/common" des="Основные сведения">
-			<data itemprop="regDate">Дата создания образовательной организации</data>
-			<data itemprop="address">Место нахождения образовательной организации</data>
-			<data itemprop="workTime">Информация о режиме и графике работы образовательной организации</data>
-			<data itemprop="telephone">Информация о контактных телефонах образовательной организации</data>
-			<data itemprop="fax">Информация о факсах образовательной организации</data>
-			<data itemprop="email">Информация об адресах электронной почты образовательной организации</data>
-			<table name="Учредители">
-				<tr itemprop="uchredLaw">Главный тег</tr>
-				<td itemprop="nameUchred">Наименование учредителя образовательной организации</td>
-				<td itemprop="fullnameUchred">Сведения о фамилии, имени, отчестве руководителя учредителя образовательной организации</td>
-				<td itemprop="addressUchred">Юридический адрес учредителя</td>
-				<td itemprop="telUchred">Контактные телефоны</td>
-				<td itemprop="mailUchred">Адрес электронной почты</td>
-				<td itemprop="websiteUchred">Адрес сайта учредителя в сети «Интернет»</td>
-			</table >
-			<table type="optional" name="Филиалы">
-				<tr itemprop="filInfo">Главный тег</tr>
-				<td itemprop="nameFil">Наименование филиала образовательной организации</td>
-				<td itemprop="addressFil">Адрес филиала</td>
-				<td itemprop="websiteFil" type="optional">Адрес сайта филиала в сети «Интернет»</td>
-			</table>
-		</division>
-		<division show="true" url="sveden/struct" des="Структура и органы управления образовательной организацией">
-			<table name="Структурные подразделения">
-				<tr itemprop="structOrgUprav">Главный тег</tr>
-				<td itemprop="structOrgUprav">Наименование структурного подразделения (органа управления)</td>
-				<td itemprop="fio">Сведения о фамилии, имени, отчестве руководителя структурного подразделения</td>
-				<td itemprop="post">Сведения о должности руководителя структурного подразделения</td>
-				<td itemprop="addressStr">Сведения о месте нахождения структурного подразделения</td>
-				<td itemprop="site" type="optional">Сведения об адресе официального сайта в сети «Интернет» структурного подразделения</td>
-				<td itemprop="email" type="optional">Сведения об адресах электронной почты структурных подразделений</td>
-				<td itemprop="divisionClauseDocLink" type="optional">Ссылка на копию положения о структурном подразделении (об органе управления)</td>
-			</table>
-		</division>
-		<division show="true" url="sveden/document" des="Документы">
-			<data itemprop="ustavDocLink" updateDate="07.05.2018">Копия устава образовательной организации</data>
-			<data itemprop="licenseDocLink">Копия лицензии на осуществление образовательной деятельности</data>
-			<data itemprop="accreditationDocLink">Копия свидетельства о государственной аккредитации</data>
-			<data itemprop="finPlanDocLink">Копия плана финансово-хозяйственной деятельности образовательной организации, утверждённого в установленном законодательством Российской Федерации порядке, или бюджетных смет образовательной организации</data>
-			<data itemprop="priemDocLink">Копия локального нормативного акта, регламентирующего правила приема обучающихся</data>
-			<data itemprop="modeDocLink">Копия локального нормативного акта, регламентирующего режим занятий обучающихся</data>
-			<data itemprop="tek_KontrolDocLink">Копия локального нормативного акта, регламентирующего формы, периодичность и порядок текущего контроля успеваемости и промежуточной аттестации обучающихся</data>
-			<data itemprop="perevodDocLink">Копия локального нормативного акта, регламентирующего порядок и основания перевода, отчисления и восстановления обучающихся</data>
-			<data itemprop="vozDocLink">Копия локального нормативного акта, регламентирующего порядок оформления возникновения, приостановления и прекращения отношений между образовательной организацией и обучающимися и (или) родителями (законными представителями) несовершеннолетних обучающихся</data>
-			<data itemprop="localActStud">Копия правил внутреннего распорядка обучающихся</data>
-			<data itemprop="localActOrder">Копия правил внутреннего трудового распорядка</data>
-			<data itemprop="localActCollec">Копия коллективного договора</data>
-			<data itemprop="reportEduDocLink">Отчет о результатах самообследования</data>
-			<data itemprop="paidEduDocLink">Документ о порядке оказания платных образовательных услуг</data>
-			<data itemprop="paidEduDogDocLink">Образец договора об оказании платных образовательных услуг</data>
-			<data itemprop="paidEduStoimDocLink">Документ об утверждении стоимости обучения каждой образовательной программе</data>
-			<data itemprop="prescriptionDocLink">Предписания органов, осуществляющих государственный контроль (надзор) в сфере образования</data>
-			<data itemprop="prescriptionOtchetDocLink">Отчёты об исполнении предписаний органов, осуществляющих государственный контроль (надзор) в сфере образования</data>
-		</division>
-		<division show="true" url="sveden/education" des="Образование">
-			<table name="Информация о сроке действия государственной аккредитации образовательной программы, о языках, на которых осуществляется образование (обучение)">
-				<tr itemprop="eduAccred">Главный тег</tr>
-				<td itemprop="eduCode">Код специальности, направления подготовки</td>
-				<td itemprop="eduName">Наименование специальности, направления подготовки</td>
-				<td itemprop="eduLevel">Информация о реализуемых уровнях образования</td>
-				<td itemprop="learningTerm">Информация о нормативных сроках обучения</td>
-				<td itemprop="language">Информация о языках, на которых осуществляется образование (обучение)</td>
-				<td itemprop="dateEnd">Информация о сроке действия государственной аккредитации образовательной программы</td>
-			</table>
-			<table name="Информация о численности обучающихся по реализуемым образовательным программам за счет бюджетных ассигнований федерального бюджета, бюджетов субъектов Российской Федерации, местных бюджетов и по договорам об образовании за счет средств физических и (или) юридических лиц">
-				<tr itemprop="eduChislen">Главный тег</tr>
-				<td itemprop="eduCode">Код специальности, направления подготовки</td>
-				<td itemprop="eduName">Наименование специальности, направления подготовки</td>
-				<td itemprop="eduLevel">Информация о реализуемых уровнях образования</td>
-				<td itemprop="eduForm">Информация о формах обучения</td>
-				<td itemprop="numberBFpriem">Численность обучающихся за счет бюджетных ассигнований федерального бюджета</td>
-				<td itemprop="numberBRpriem">Численность обучающихся за счет бюджетов субъектов Российской Федерации</td>
-				<td itemprop="numberBMpriem">Численность обучающихся за счет местных бюджетов</td>
-				<td itemprop="numberPpriem">Численность обучающихся за счет средств физических и (или) юридических лиц</td>
-			</table>
-			<table name="Информация о результатах приема по каждому направлению подготовки или специальности">
-				<tr itemprop="eduPriem">Главный тег</tr>
-				<td itemprop="eduCode">Сведения о коде специальности / направления подготовки</td>
-				<td itemprop="eduName">Сведения о наименовании специальности / направления подготовки</td>
-				<td itemprop="eduLevel">Сведения об уровне образования</td>
-				<td itemprop="eduForm">Сведения о форме обучения</td>
-				<td itemprop="numberBFpriem">Сведения о результатах приема за счёт бюджетных ассигнований федерального бюджета</td>
-				<td itemprop="numberBRpriem">Сведения о результатах приема за счёт бюджетов субъектов Российской Федерации</td>
-				<td itemprop="numberBMpriem">Сведения о результатах приема за счёт местных бюджетов</td>
-				<td itemprop="numberPpriem">Сведения о результатах приема за счёт средств физических и (или) юридических лиц</td>
-				<td itemprop="scorePriem">Сведения о средней сумме набранных баллов по всем вступительным испытаниям</td>
-			</table>
-			<table name="Информация о результатах перевода, восстановления и отчисления">
-				<tr itemprop="eduPerevod">Главный тег</tr>
-				<td itemprop="eduCode">Сведения о коде специальности / направления подготовки</td>
-				<td itemprop="eduName">Сведения о наименовании специальности / направления подготовки</td>
-				<td itemprop="eduLevel">Сведения об уровне обучения</td>
-				<td itemprop="eduForm">Сведения о форме обучения</td>
-				<td itemprop="numberOutPerevod">Сведения о численности обучающихся, переведенных в другие образовательные организации</td>
-				<td itemprop="numberToPerevod">Сведения о численности обучающихся, переведенных из других образовательных организаций</td>
-				<td itemprop="numberResPerevod">Сведения о численности восстановленных обучающихся</td>
-				<td itemprop="numbeExpPerevod">Сведения о численности отчисленных обучающихся</td>
-			</table>
-			<table name="Информация по образовательным программам, в том числе адаптированным">
-				<tr itemprop="eduOp">Главный тег</tr>
-				<td itemprop="eduCode">Сведения о коде специальности / направления подготовки</td>
-				<td itemprop="eduName">Сведения о наименовании специальности / направления подготовки</td>
-				<td itemprop="eduLevel">Сведения об уровне обучения</td>
-				<td itemprop="eduForm">Сведения о форме обучения</td>
-				<td itemprop="opMain">Ссылка на описание образовательной программы с приложением ее копии</td>
-				<td itemprop="adOpMain">Ссылка на описание образовательной программы с приложением ее копии (для адаптированной образовательной программы)</td>
-				<td itemprop="educationPlan">Ссылка на учебный план с приложением его копии</td>
-				<td itemprop="adEducationPlan">Ссылка на учебный план с приложением его копии (для адаптированной образовательной программы)</td>
-				<td itemprop="educationAnnotation">Ссылка на аннотации к рабочим программам дисциплин с приложением их копий</td>
-				<td itemprop="adEducationAnnotation">Ссылка на аннотации к рабочим программам дисциплин с приложением их копий (для адаптированной образовательной программы)</td>
-				<td itemprop="educationShedule">Ссылка на календарный учебный график с приложением его копии</td>
-				<td itemprop="adEducationShedule">Ссылка на календарный учебный график с приложением его копии (для адаптированной образовательной программы)</td>
-				<td itemprop="methodology">Ссылка на нормативный и методический документы, разработанные образовательной организацией для обеспечения образовательного процесса</td>
-				<td itemprop="adMethodology">Ссылка на нормативный и методический документы, разработанные образовательной организацией для обеспечения образовательного процесса (для адаптированной образовательной программы)</td>
-				<td itemprop="eduEl">Ссылка на информацию об использовании при реализации образовательной программы электронного обучения и дистанционных образовательных технологий</td>
-				<td itemprop="adEduEl">Ссылка на информацию об использовании при реализации образовательной программы электронного обучения и дистанционных образовательных технологий (для адаптированной образовательной программы)</td>
-				<td itemprop="eduPr">Ссылка на информацию о практиках, предусмотренных соответствующей образовательной программой</td>
-				<td itemprop="adEduPr">Ссылка на информацию о практиках, предусмотренных соответствующей образовательной программой (для адаптированной образовательной программы)</td>
-			</table>
-			<table name="Направления и результаты научной (научно-исследовательской) деятельности">
-				<tr itemprop="eduNir">Главный тег</tr>
-				<td itemprop="eduCode">Сведения о коде специальности / направления подготовки</td>
-				<td itemprop="eduName">Сведения о наименовании специальности / направления подготовки</td>
-				<td itemprop="perechenNir">Перечень научных направлений, в рамках которых ведется научная (научно-исследовательская) деятельность</td>
-				<td itemprop="baseNir">Сведения о научно-исследовательской базе для осуществления научной (научно-исследовательской) деятельности</td>
-				<td itemprop="nprNir">Сведения о количестве НПР, принимающих участие в научной (научно-исследовательской) деятельности</td>
-				<td itemprop="studNir">Сведения о количестве студентов, принимающих участие в научной (научно-исследовательской) деятельности</td>
-				<td itemprop="monografNir">Сведения о количестве изданных монографий научно-педагогического персонала образовательного учреждения по всем научным направлениям за последний год</td>
-				<td itemprop="articleNir">Сведения о количестве изданных и принятых к публикации статей в изданиях, рекомендованных ВАК/зарубежных для публикации научных работ за последний год</td>
-				<td itemprop="patentRNir">Сведения о количестве российских патентов, полученных на разработки за последний год</td>
-				<td itemprop="patentZNir">Сведения о количестве зарубежных патентов, полученных на разработки за последний год</td>
-				<td itemprop="svidRNir">Сведения о количестве российских свидетельств о регистрации объекта интеллектуальной собственности, выданных на разработки за последний год</td>
-				<td itemprop="svidZNir">Сведения о количестве зарубежных свидетельств о регистрации объекта интеллектуальной собственности, выданных на разработки за последний год</td>
-				<td itemprop="financeNir">Сведения о среднегодовом объеме финансирования научных исследований на одного научно-педагогического работника организации (в приведенных к целочисленным значениям ставок) (тыс. руб.)</td>
-			</table>
-		</division>
-		<division show="true" url="sveden/eduStandarts" des="Образовательные стандарты">
-			<data itemprop="eduStandartDoc">Копии федеральных государственных образовательных стандартов</data>
-		</division>
-		<division show="true" url="sveden/employees" des="Руководство. Педагогический (научно-педагогический) состав">
-			<table name="Руководство">
-				<tr itemprop="rucovodstvo">Главный тег</tr>
-				<td itemprop="fio">Сведения о фамилии, имени, отчестве руководителя (заместителя руководителя) образовательной организации</td>
-				<td itemprop="post">Сведения о должности руководителя (заместителя руководителя) образовательной организации</td>
-				<td itemprop="telephone">Сведения о контактных телефонах руководителя (заместителя руководителя) образовательной организации</td>
-				<td itemprop="email">Сведения об адресах электронной почты руководителя (заместителя руководителя) образовательной организации</td>
-			</table>
-			<table type="optional" name="Руководители филиалов образовательной организации">
-				<tr itemprop="rucovodstvoFil">Главный тег</tr>
-				<td itemprop="nameFil">Сведения о наименовании филиала образовательной организации</td>
-				<td itemprop="fio">Сведения о фамилии, имени, отчестве руководителя филиала образовательной организации</td>
-				<td itemprop="post">Сведения о должности руководителя филиала образовательной организации</td>
-				<td itemprop="telephone">Сведения о контактных телефонах руководителя филиала образовательной организации</td>
-				<td itemprop="email">Сведения об адресах электронной почты руководителя филиала образовательной организации</td>
-			</table>
-			<table name="Педагогический состав">
-				<tr itemprop="teachingStaff">Главный тег</tr>
-				<td itemprop="fio">Ф.И.О. педагогического работника образовательной организации</td>
-				<td itemprop="post">Занимаемая должность (должности) педагогического работника</td>
-				<td itemprop="teachingDiscipline">Преподаваемые педагогическим работником дисциплины</td>
-				<td itemprop="teachingLevel">Уровень образования</td>
-				<td itemprop="teachingQual">Квалификация</td>
-				<td itemprop="degree" type="optional">Учёная степень педагогического работника (при наличии)</td>
-				<td itemprop="academStat" type="optional">Учёное звание педагогического работника (при наличии)</td>
-				<td itemprop="employeeQualification">Наименование направления подготовки и (или) специальности педагогического работника</td>
-				<td itemprop="profDevelopment" type="optional">Данные о повышении квалификации и (или) профессиональной переподготовке педагогического работника (при наличии)</td>
-				<td itemprop="genExperience">Общий стаж работы педагогического работника</td>
-				<td itemprop="specExperience">Стаж работы педагогического работника по специальности</td>
-			</table>
-		</division>
-		<division show="true" url="sveden/objects" des="Материально-техническое обеспечение и оснащённость образовательного процесса">
-			<data itemprop="purposeCab">Сведения о наличии оборудованных учебных кабинетов</data>
-			<data itemprop="purposePrac">Сведения о наличии объектов для проведения практических занятий</data>
-			<data itemprop="purposeLibr">Сведения о наличии библиотек</data>
-			<data itemprop="purposeLibrOvz">Сведения о наличии библиотек, приспособленных для использования инвалидами и лицами с ограниченными возможностями здоровья</data>
-			<data itemprop="purposeSport">Сведения о наличии объектов спорта</data>
-			<data itemprop="purposeSportOvz">Сведения о наличии объектов спорта, приспособленных для использования инвалидами и лицами с ограниченными возможностями здоровья</data>
-			<data itemprop="purposeFacil">Сведения о наличии средств обучения и воспитания</data>
-			<data itemprop="purposeFacilOvz">Сведения о наличии средств обучения и воспитания, приспособленных для использования инвалидами и лицами с ограниченными возможностями здоровья</data>
-			<data itemprop="ovz">Сведения об обеспечении доступа в здания образовательной организации инвалидов и лиц с ограниченными возможностями здоровья</data>
-			<data itemprop="mealsDocLink">Ссылка на копию документа, содержащего сведения об условиях питания и охраны здоровья обучающихся, в том числе инвалидов и лиц с ограниченными возможностями здоровья</data>
-			<data itemprop="meals">Сведения об условиях питания и охраны здоровья обучающихся</data>
-			<data itemprop="mealsOvz">Сведения об условиях питания и охраны здоровья инвалидов и лиц с ограниченными возможностями здоровья</data>
-			<data itemprop="comNet">Сведения о доступе к информационным системам и информационно-телекоммуникационным сетям</data>
-			<data itemprop="comNetOvz">Сведения о доступе к информационным системам и информационно-телекоммуникационным сетям, приспособленным для использования инвалидами и лицами с ограниченными возможностями здоровья</data>
-			<data itemprop="purposeEios">Наличие в образовательной организации электронной информационно-образовательной среды</data>
-			<data itemprop="purposeInternet">Общее количество компьютеров с выходом в информационно-телекоммуникационную сеть «Интернет», к которым имеют доступ обучающиеся</data>
-			<data itemprop="purposeEbs">Общее количество ЭБС, к которым имеют доступ обучающиеся (собственных или на договорной основе)</data>
-			<data itemprop="eoisOwn">Наличие собственных электронных образовательных и информационных ресурсов</data>
-			<data itemprop="eoisSide">Наличие сторонних электронных образовательных и информационных ресурсов</data>
-			<data itemprop="bdec">Наличие базы данных электронного каталога</data>
-			<data itemprop="erList">Сведения об электронных образовательных ресурсах</data>
-			<data itemprop="erListOvz">Сведения об электронных образовательных ресурсах, приспособленных для использования инвалидами и лицами с ограниченными возможностями здоровья</data>
-			<data itemprop="techOvz">Сведения о наличии специальных технических средств обучения коллективного и индивидуального пользования для инвалидов и лиц с ограниченными возможностями здоровья</data>
-			<table name="Сведения о наличии оборудованных учебных кабинетов">
-				<tr itemprop="purposeCab">Сведения о наличии оборудованных учебных кабинетов</tr>
-				<td itemprop="eduCode">Код специальности, направления подготовки</td>
-				<td itemprop="eduName">Наименование специальности, направления подготовки</td>
-				<td itemprop="purposeCabOvz">Сведения о наличии оборудованных учебных кабинетов, приспособленных для использования инвалидами и лицами с ограниченными возможностями здоровья</td>
-			</table>
-			<table name="Сведения о наличии объектов для проведения практических занятий">
-				<tr itemprop="purposePrac">Сведения о наличии объектов для проведения практических занятий</tr>
-				<td itemprop="eduCode">Код специальности, направления подготовки</td>
-				<td itemprop="eduName">Наименование специальности, направления подготовки</td>
-				<td itemprop="purposePracOvz">Сведения о наличии объектов для проведения практических занятий, приспособленных для использования инвалидами и лицами с ограниченными возможностями здоровья</td>
-			</table>
-		</division>
-		<division show="true" url="sveden/grants" des="Стипендии и иные виды материальной поддержки">	
-			<data itemprop="grant">Главный тег</data>
-			<data itemprop="typeGrant">Сведения о видах стипендий</data>
-			<data itemprop="localGrant">Ссылка на копию локального нормативного правового акта</data>
-			<data itemprop="federalGrant">Ссылка на копию нормативного правового акта федерального уровня, регламентирующего стипендиальное обеспечение</data>
-			<data itemprop="hostelInfo">Сведения о наличии общежития, интерната</data>
-			<data itemprop="hostelInfoOvz">Сведения о наличии общежития, интерната, приспособленных для использования инвалидами и лицами с ограниченными возможностями здоровья</data>
-			<data itemprop="hostelNum">Сведения о количестве мест в общежитии, интернате для иногородних обучающихся</data>
-			<data itemprop="hostelNumOvz">Сведения о количестве мест в общежитии, интернате, приспособленных для использования инвалидами и лицами с ограниченными возможностями здоровья</data>
-			<data itemprop="localActObSt">Копия локального нормативного акта, регламентирующего размер платы за пользование жилым помещением и коммунальные услуги в общежитии</data>
-			<data itemprop="support">Информация об иных видах материальной поддержки обучающихся</data>
-			<data itemprop="graduateJob">Информация о трудоустройстве выпускников </data>
-		</division>
-		<division show="true" url="sveden/paid_edu" des="Платные образовательные услуги">
-			<data itemprop="paidEdu">Информация о порядке оказания платных образовательных услуг</data>
-		</division>
-		<division show="true" url="sveden/budget" des="Финансово-хозяйственная деятельность">
-			<data itemprop="volume">Главный тег</data>
-			<data itemprop="finBFVolume">Информация об объёме образовательной деятельности, финансовое обеспечение которой осуществляется за счёт бюджетных ассигнований федерального бюджета</data>
-			<data itemprop="finBRVolume">Информация об объёме образовательной деятельности, финансовое обеспечение которой осуществляется за счёт бюджетов субъектов Российской Федерации</data>
-			<data itemprop="finBMVolume">Информация об объёме образовательной деятельности, финансовое обеспечение которой осуществляется за счёт местных бюджетов</data>
-			<data itemprop="finPVolume">Информация об объёме образовательной деятельности, финансовое обеспечение которой осуществляется по договорам об образовании за счёт средств физических и (или) юридических лиц</data>
-			<data itemprop="finRec">Информация о поступлении и расходовании финансовых и материальных средств</data>
-			<data itemprop="planFinRec">Ссылка на копию плана финансово-хозяйственной деятельности</data>
-		</division>
-		<division show="true" url="sveden/vacant" des="Вакантные места для приема (перевода)">
-			<table name="Вакантные места для приема (перевода)">
-				<tr itemprop="vacant">Главный тег</tr>
-				<td itemprop="nameProgVacant">Сведения о наименовании образовательной программы</td>
-				<td itemprop="specialVacant">Сведения о наименовании специальности / направления подготовки</td>
-				<td itemprop="bachelorVacant" type="selective">Сведения об уровне образования: Бакалавриат</td>
-				<td itemprop="specialityVacant" type="selective">Сведения об уровне образования: Специалитет</td>
-				<td itemprop="magistracyVacant" type="selective">Сведения об уровне образования: Магистратура</td>
-				<td itemprop="postgraduateVacant" type="selective">Сведения об уровне образования: Аспирантура</td>
-				<td itemprop="numberBFVacant">Сведения о количестве вакантных мест для приёма (перевода) за счёт бюджетных ассигнований федерального бюджета</td>
-				<td itemprop="numberBRVacant">Сведения о количестве вакантных мест для приёма (перевода) за счёт бюджетных ассигнований бюджетов субъекта Российской Федерации</td>
-				<td itemprop="numberBMVacant">Сведения о количестве вакантных мест для приёма (перевода) за счёт бюджетных ассигнований местных бюджетов</td>
-				<td itemprop="numberPVacant">Сведения о количестве вакантных мест для приёма (перевода) за счёт средств физических и (или) юридических лиц</td>
-			</table>
-		</division>
-   </divisions>
-	<users>
-		<user name="Константин Панов" email="kap120796@gmail.com" login="kap37" password="1q2w3e4r" rule="admin"/>
-		<user name="Просто пользователь" email="kap120796@mail.ru" login="user1" password="password1" rule="user"/>
-	</users>
-</site>
+<?xml version="1.0"?>
+<ArrayOfDivisionSerializable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DivisionSerializable>
+    <Url>sveden/common</Url>
+    <Description>Основные сведения</Description>
+    <User>user1</User>
+    <Data>
+      <ItempropSerializable>
+        <Value>regDate</Value>
+        <Description>Дата создания образовательной организации</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>address</Value>
+        <Description>Место нахождения образовательной организации</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>workTime</Value>
+        <Description>Информация о режиме и графике работы образовательной организации</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>telephone</Value>
+        <Description>Информация о контактных телефонах образовательной организации</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>fax</Value>
+        <Description>Информация о факсах образовательной организации</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>email</Value>
+        <Description>Информация об адресах электронной почты образовательной организации</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+    </Data>
+    <Tables>
+      <TableSerializable>
+        <TableItemprops>
+          <TableItempropSerializable>
+            <Value>uchredLaw</Value>
+            <Description>Главный тег</Description>
+            <Type>Required</Type>
+            <IsMainTag>true</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>nameUchred</Value>
+            <Description>Наименование учредителя образовательной организации</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>fullnameUchred</Value>
+            <Description>Сведения о фамилии, имени, отчестве руководителя учредителя образовательной организации</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>addressUchred</Value>
+            <Description>Юридический адрес учредителя</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>telUchred</Value>
+            <Description>Контактные телефоны</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>mailUchred</Value>
+            <Description>Адрес электронной почты</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>websiteUchred</Value>
+            <Description>Адрес сайта учредителя в сети «Интернет»</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+        </TableItemprops>
+        <Name>Учредители</Name>
+        <Type>Required</Type>
+      </TableSerializable>
+      <TableSerializable>
+        <TableItemprops>
+          <TableItempropSerializable>
+            <Value>filInfo</Value>
+            <Description>Главный тег</Description>
+            <Type>Required</Type>
+            <IsMainTag>true</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>nameFil</Value>
+            <Description>Наименование филиала образовательной организации</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>addressFil</Value>
+            <Description>Адрес филиала</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>websiteFil</Value>
+            <Description>Адрес сайта филиала в сети «Интернет»</Description>
+            <Type>Optional</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+        </TableItemprops>
+        <Name>Филиалы</Name>
+        <Type>Optional</Type>
+      </TableSerializable>
+    </Tables>
+  </DivisionSerializable>
+  <DivisionSerializable>
+    <Url>sveden/struct</Url>
+    <Description>Структура и органы управления образовательной организацией</Description>
+    <User>user1</User>
+    <Data />
+    <Tables>
+      <TableSerializable>
+        <TableItemprops>
+          <TableItempropSerializable>
+            <Value>structOrgUprav</Value>
+            <Description>Главный тег</Description>
+            <Type>Required</Type>
+            <IsMainTag>true</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>structOrgUprav</Value>
+            <Description>Наименование структурного подразделения (органа управления)</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>fio</Value>
+            <Description>Сведения о фамилии, имени, отчестве руководителя структурного подразделения</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>post</Value>
+            <Description>Сведения о должности руководителя структурного подразделения</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>addressStr</Value>
+            <Description>Сведения о месте нахождения структурного подразделения</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>site</Value>
+            <Description>Сведения об адресе официального сайта в сети «Интернет» структурного подразделения</Description>
+            <Type>Optional</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>email</Value>
+            <Description>Сведения об адресах электронной почты структурных подразделений</Description>
+            <Type>Optional</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>divisionClauseDocLink</Value>
+            <Description>Ссылка на копию положения о структурном подразделении (об органе управления)</Description>
+            <Type>Optional</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+        </TableItemprops>
+        <Name>Структурные подразделения</Name>
+        <Type>Required</Type>
+      </TableSerializable>
+    </Tables>
+  </DivisionSerializable>
+  <DivisionSerializable>
+    <Url>sveden/document</Url>
+    <Description>Документы</Description>
+    <Data>
+      <ItempropSerializable>
+        <Value>ustavDocLink</Value>
+        <Description>Копия устава образовательной организации</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>licenseDocLink</Value>
+        <Description>Копия лицензии на осуществление образовательной деятельности</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>accreditationDocLink</Value>
+        <Description>Копия свидетельства о государственной аккредитации</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>finPlanDocLink</Value>
+        <Description>Копия плана финансово-хозяйственной деятельности образовательной организации, утверждённого в установленном законодательством Российской Федерации порядке, или бюджетных смет образовательной организации</Description>
+        <User>user1</User>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>priemDocLink</Value>
+        <Description>Копия локального нормативного акта, регламентирующего правила приема обучающихся</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>modeDocLink</Value>
+        <Description>Копия локального нормативного акта, регламентирующего режим занятий обучающихся</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>tek_KontrolDocLink</Value>
+        <Description>Копия локального нормативного акта, регламентирующего формы, периодичность и порядок текущего контроля успеваемости и промежуточной аттестации обучающихся</Description>
+        <User>user1</User>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>perevodDocLink</Value>
+        <Description>Копия локального нормативного акта, регламентирующего порядок и основания перевода, отчисления и восстановления обучающихся</Description>
+        <User>user1</User>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>vozDocLink</Value>
+        <Description>Копия локального нормативного акта, регламентирующего порядок оформления возникновения, приостановления и прекращения отношений между образовательной организацией и обучающимися и (или) родителями (законными представителями) несовершеннолетних обучающихся</Description>
+        <User>user1</User>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>localActStud</Value>
+        <Description>Копия правил внутреннего распорядка обучающихся</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>localActOrder</Value>
+        <Description>Копия правил внутреннего трудового распорядка</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>localActCollec</Value>
+        <Description>Копия коллективного договора</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>reportEduDocLink</Value>
+        <Description>Отчет о результатах самообследования</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>paidEduDocLink</Value>
+        <Description>Документ о порядке оказания платных образовательных услуг</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>paidEduDogDocLink</Value>
+        <Description>Образец договора об оказании платных образовательных услуг</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>paidEduStoimDocLink</Value>
+        <Description>Документ об утверждении стоимости обучения каждой образовательной программе</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>prescriptionDocLink</Value>
+        <Description>Предписания органов, осуществляющих государственный контроль (надзор) в сфере образования</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>prescriptionOtchetDocLink</Value>
+        <Description>Отчёты об исполнении предписаний органов, осуществляющих государственный контроль (надзор) в сфере образования</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+    </Data>
+    <Tables />
+  </DivisionSerializable>
+  <DivisionSerializable>
+    <Url>sveden/education</Url>
+    <Description>Образование</Description>
+    <Data />
+    <Tables>
+      <TableSerializable>
+        <TableItemprops>
+          <TableItempropSerializable>
+            <Value>eduAccred</Value>
+            <Description>Главный тег</Description>
+            <Type>Required</Type>
+            <IsMainTag>true</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduCode</Value>
+            <Description>Код специальности, направления подготовки</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduName</Value>
+            <Description>Наименование специальности, направления подготовки</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduLevel</Value>
+            <Description>Информация о реализуемых уровнях образования</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>learningTerm</Value>
+            <Description>Информация о нормативных сроках обучения</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>language</Value>
+            <Description>Информация о языках, на которых осуществляется образование (обучение)</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>dateEnd</Value>
+            <Description>Информация о сроке действия государственной аккредитации образовательной программы</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+        </TableItemprops>
+        <Name>Информация о сроке действия государственной аккредитации образовательной программы, о языках, на которых осуществляется образование (обучение)</Name>
+        <Type>Required</Type>
+      </TableSerializable>
+      <TableSerializable>
+        <TableItemprops>
+          <TableItempropSerializable>
+            <Value>eduChislen</Value>
+            <Description>Главный тег</Description>
+            <Type>Required</Type>
+            <IsMainTag>true</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduCode</Value>
+            <Description>Код специальности, направления подготовки</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduName</Value>
+            <Description>Наименование специальности, направления подготовки</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduLevel</Value>
+            <Description>Информация о реализуемых уровнях образования</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduForm</Value>
+            <Description>Информация о формах обучения</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>numberBFpriem</Value>
+            <Description>Численность обучающихся за счет бюджетных ассигнований федерального бюджета</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>numberBRpriem</Value>
+            <Description>Численность обучающихся за счет бюджетов субъектов Российской Федерации</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>numberBMpriem</Value>
+            <Description>Численность обучающихся за счет местных бюджетов</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>numberPpriem</Value>
+            <Description>Численность обучающихся за счет средств физических и (или) юридических лиц</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+        </TableItemprops>
+        <Name>Информация о численности обучающихся по реализуемым образовательным программам за счет бюджетных ассигнований федерального бюджета, бюджетов субъектов Российской Федерации, местных бюджетов и по договорам об образовании за счет средств физических и (или) юридических лиц</Name>
+        <Type>Required</Type>
+      </TableSerializable>
+      <TableSerializable>
+        <TableItemprops>
+          <TableItempropSerializable>
+            <Value>eduPriem</Value>
+            <Description>Главный тег</Description>
+            <Type>Required</Type>
+            <IsMainTag>true</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduCode</Value>
+            <Description>Сведения о коде специальности / направления подготовки</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduName</Value>
+            <Description>Сведения о наименовании специальности / направления подготовки</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduLevel</Value>
+            <Description>Сведения об уровне образования</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduForm</Value>
+            <Description>Сведения о форме обучения</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>numberBFpriem</Value>
+            <Description>Сведения о результатах приема за счёт бюджетных ассигнований федерального бюджета</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>numberBRpriem</Value>
+            <Description>Сведения о результатах приема за счёт бюджетов субъектов Российской Федерации</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>numberBMpriem</Value>
+            <Description>Сведения о результатах приема за счёт местных бюджетов</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>numberPpriem</Value>
+            <Description>Сведения о результатах приема за счёт средств физических и (или) юридических лиц</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>scorePriem</Value>
+            <Description>Сведения о средней сумме набранных баллов по всем вступительным испытаниям</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+        </TableItemprops>
+        <Name>Информация о результатах приема по каждому направлению подготовки или специальности</Name>
+        <Type>Required</Type>
+      </TableSerializable>
+      <TableSerializable>
+        <TableItemprops>
+          <TableItempropSerializable>
+            <Value>eduPerevod</Value>
+            <Description>Главный тег</Description>
+            <Type>Required</Type>
+            <IsMainTag>true</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduCode</Value>
+            <Description>Сведения о коде специальности / направления подготовки</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduName</Value>
+            <Description>Сведения о наименовании специальности / направления подготовки</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduLevel</Value>
+            <Description>Сведения об уровне обучения</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduForm</Value>
+            <Description>Сведения о форме обучения</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>numberOutPerevod</Value>
+            <Description>Сведения о численности обучающихся, переведенных в другие образовательные организации</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>numberToPerevod</Value>
+            <Description>Сведения о численности обучающихся, переведенных из других образовательных организаций</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>numberResPerevod</Value>
+            <Description>Сведения о численности восстановленных обучающихся</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>numbeExpPerevod</Value>
+            <Description>Сведения о численности отчисленных обучающихся</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+        </TableItemprops>
+        <Name>Информация о результатах перевода, восстановления и отчисления</Name>
+        <Type>Required</Type>
+      </TableSerializable>
+      <TableSerializable>
+        <TableItemprops>
+          <TableItempropSerializable>
+            <Value>eduOp</Value>
+            <Description>Главный тег</Description>
+            <Type>Required</Type>
+            <IsMainTag>true</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduCode</Value>
+            <Description>Сведения о коде специальности / направления подготовки</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduName</Value>
+            <Description>Сведения о наименовании специальности / направления подготовки</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduLevel</Value>
+            <Description>Сведения об уровне обучения</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduForm</Value>
+            <Description>Сведения о форме обучения</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>opMain</Value>
+            <Description>Ссылка на описание образовательной программы с приложением ее копии</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>adOpMain</Value>
+            <Description>Ссылка на описание образовательной программы с приложением ее копии (для адаптированной образовательной программы)</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>educationPlan</Value>
+            <Description>Ссылка на учебный план с приложением его копии</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>adEducationPlan</Value>
+            <Description>Ссылка на учебный план с приложением его копии (для адаптированной образовательной программы)</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>educationAnnotation</Value>
+            <Description>Ссылка на аннотации к рабочим программам дисциплин с приложением их копий</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>adEducationAnnotation</Value>
+            <Description>Ссылка на аннотации к рабочим программам дисциплин с приложением их копий (для адаптированной образовательной программы)</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>educationShedule</Value>
+            <Description>Ссылка на календарный учебный график с приложением его копии</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>adEducationShedule</Value>
+            <Description>Ссылка на календарный учебный график с приложением его копии (для адаптированной образовательной программы)</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>methodology</Value>
+            <Description>Ссылка на нормативный и методический документы, разработанные образовательной организацией для обеспечения образовательного процесса</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>adMethodology</Value>
+            <Description>Ссылка на нормативный и методический документы, разработанные образовательной организацией для обеспечения образовательного процесса (для адаптированной образовательной программы)</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduEl</Value>
+            <Description>Ссылка на информацию об использовании при реализации образовательной программы электронного обучения и дистанционных образовательных технологий</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>adEduEl</Value>
+            <Description>Ссылка на информацию об использовании при реализации образовательной программы электронного обучения и дистанционных образовательных технологий (для адаптированной образовательной программы)</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduPr</Value>
+            <Description>Ссылка на информацию о практиках, предусмотренных соответствующей образовательной программой</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>adEduPr</Value>
+            <Description>Ссылка на информацию о практиках, предусмотренных соответствующей образовательной программой (для адаптированной образовательной программы)</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+        </TableItemprops>
+        <Name>Информация по образовательным программам, в том числе адаптированным</Name>
+        <Type>Required</Type>
+      </TableSerializable>
+      <TableSerializable>
+        <TableItemprops>
+          <TableItempropSerializable>
+            <Value>eduNir</Value>
+            <Description>Главный тег</Description>
+            <Type>Required</Type>
+            <IsMainTag>true</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduCode</Value>
+            <Description>Сведения о коде специальности / направления подготовки</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduName</Value>
+            <Description>Сведения о наименовании специальности / направления подготовки</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>perechenNir</Value>
+            <Description>Перечень научных направлений, в рамках которых ведется научная (научно-исследовательская) деятельность</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>baseNir</Value>
+            <Description>Сведения о научно-исследовательской базе для осуществления научной (научно-исследовательской) деятельности</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>nprNir</Value>
+            <Description>Сведения о количестве НПР, принимающих участие в научной (научно-исследовательской) деятельности</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>studNir</Value>
+            <Description>Сведения о количестве студентов, принимающих участие в научной (научно-исследовательской) деятельности</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>monografNir</Value>
+            <Description>Сведения о количестве изданных монографий научно-педагогического персонала образовательного учреждения по всем научным направлениям за последний год</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>articleNir</Value>
+            <Description>Сведения о количестве изданных и принятых к публикации статей в изданиях, рекомендованных ВАК/зарубежных для публикации научных работ за последний год</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>patentRNir</Value>
+            <Description>Сведения о количестве российских патентов, полученных на разработки за последний год</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>patentZNir</Value>
+            <Description>Сведения о количестве зарубежных патентов, полученных на разработки за последний год</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>svidRNir</Value>
+            <Description>Сведения о количестве российских свидетельств о регистрации объекта интеллектуальной собственности, выданных на разработки за последний год</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>svidZNir</Value>
+            <Description>Сведения о количестве зарубежных свидетельств о регистрации объекта интеллектуальной собственности, выданных на разработки за последний год</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>financeNir</Value>
+            <Description>Сведения о среднегодовом объеме финансирования научных исследований на одного научно-педагогического работника организации (в приведенных к целочисленным значениям ставок) (тыс. руб.)</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+        </TableItemprops>
+        <Name>Направления и результаты научной (научно-исследовательской) деятельности</Name>
+        <Type>Required</Type>
+      </TableSerializable>
+    </Tables>
+  </DivisionSerializable>
+  <DivisionSerializable>
+    <Url>sveden/eduStandarts</Url>
+    <Description>Образовательные стандарты</Description>
+    <Data>
+      <ItempropSerializable>
+        <Value>eduStandartDoc</Value>
+        <Description>Копии федеральных государственных образовательных стандартов</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+    </Data>
+    <Tables />
+  </DivisionSerializable>
+  <DivisionSerializable>
+    <Url>sveden/employees</Url>
+    <Description>Руководство. Педагогический (научно-педагогический) состав</Description>
+    <Data />
+    <Tables>
+      <TableSerializable>
+        <TableItemprops>
+          <TableItempropSerializable>
+            <Value>rucovodstvo</Value>
+            <Description>Главный тег</Description>
+            <Type>Required</Type>
+            <IsMainTag>true</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>fio</Value>
+            <Description>Сведения о фамилии, имени, отчестве руководителя (заместителя руководителя) образовательной организации</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>post</Value>
+            <Description>Сведения о должности руководителя (заместителя руководителя) образовательной организации</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>telephone</Value>
+            <Description>Сведения о контактных телефонах руководителя (заместителя руководителя) образовательной организации</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>email</Value>
+            <Description>Сведения об адресах электронной почты руководителя (заместителя руководителя) образовательной организации</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+        </TableItemprops>
+        <Name>Руководство</Name>
+        <Type>Required</Type>
+      </TableSerializable>
+      <TableSerializable>
+        <TableItemprops>
+          <TableItempropSerializable>
+            <Value>rucovodstvoFil</Value>
+            <Description>Главный тег</Description>
+            <Type>Required</Type>
+            <IsMainTag>true</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>nameFil</Value>
+            <Description>Сведения о наименовании филиала образовательной организации</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>fio</Value>
+            <Description>Сведения о фамилии, имени, отчестве руководителя филиала образовательной организации</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>post</Value>
+            <Description>Сведения о должности руководителя филиала образовательной организации</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>telephone</Value>
+            <Description>Сведения о контактных телефонах руководителя филиала образовательной организации</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>email</Value>
+            <Description>Сведения об адресах электронной почты руководителя филиала образовательной организации</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+        </TableItemprops>
+        <Name>Руководители филиалов образовательной организации</Name>
+        <Type>Optional</Type>
+      </TableSerializable>
+      <TableSerializable>
+        <TableItemprops>
+          <TableItempropSerializable>
+            <Value>teachingStaff</Value>
+            <Description>Главный тег</Description>
+            <Type>Required</Type>
+            <IsMainTag>true</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>fio</Value>
+            <Description>Ф.И.О. педагогического работника образовательной организации</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>post</Value>
+            <Description>Занимаемая должность (должности) педагогического работника</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>teachingDiscipline</Value>
+            <Description>Преподаваемые педагогическим работником дисциплины</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>teachingLevel</Value>
+            <Description>Уровень образования</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>teachingQual</Value>
+            <Description>Квалификация</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>degree</Value>
+            <Description>Учёная степень педагогического работника (при наличии)</Description>
+            <Type>Optional</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>academStat</Value>
+            <Description>Учёное звание педагогического работника (при наличии)</Description>
+            <Type>Optional</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>employeeQualification</Value>
+            <Description>Наименование направления подготовки и (или) специальности педагогического работника</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>profDevelopment</Value>
+            <Description>Данные о повышении квалификации и (или) профессиональной переподготовке педагогического работника (при наличии)</Description>
+            <Type>Optional</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>genExperience</Value>
+            <Description>Общий стаж работы педагогического работника</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>specExperience</Value>
+            <Description>Стаж работы педагогического работника по специальности</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+        </TableItemprops>
+        <Name>Педагогический состав</Name>
+        <Type>Required</Type>
+      </TableSerializable>
+    </Tables>
+  </DivisionSerializable>
+  <DivisionSerializable>
+    <Url>sveden/objects</Url>
+    <Description>Материально-техническое обеспечение и оснащённость образовательного процесса</Description>
+    <Data>
+      <ItempropSerializable>
+        <Value>purposeCab</Value>
+        <Description>Сведения о наличии оборудованных учебных кабинетов</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>purposePrac</Value>
+        <Description>Сведения о наличии объектов для проведения практических занятий</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>purposeLibr</Value>
+        <Description>Сведения о наличии библиотек</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>purposeLibrOvz</Value>
+        <Description>Сведения о наличии библиотек, приспособленных для использования инвалидами и лицами с ограниченными возможностями здоровья</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>purposeSport</Value>
+        <Description>Сведения о наличии объектов спорта</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>purposeSportOvz</Value>
+        <Description>Сведения о наличии объектов спорта, приспособленных для использования инвалидами и лицами с ограниченными возможностями здоровья</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>purposeFacil</Value>
+        <Description>Сведения о наличии средств обучения и воспитания</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>purposeFacilOvz</Value>
+        <Description>Сведения о наличии средств обучения и воспитания, приспособленных для использования инвалидами и лицами с ограниченными возможностями здоровья</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>ovz</Value>
+        <Description>Сведения об обеспечении доступа в здания образовательной организации инвалидов и лиц с ограниченными возможностями здоровья</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>mealsDocLink</Value>
+        <Description>Ссылка на копию документа, содержащего сведения об условиях питания и охраны здоровья обучающихся, в том числе инвалидов и лиц с ограниченными возможностями здоровья</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>meals</Value>
+        <Description>Сведения об условиях питания и охраны здоровья обучающихся</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>mealsOvz</Value>
+        <Description>Сведения об условиях питания и охраны здоровья инвалидов и лиц с ограниченными возможностями здоровья</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>comNet</Value>
+        <Description>Сведения о доступе к информационным системам и информационно-телекоммуникационным сетям</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>comNetOvz</Value>
+        <Description>Сведения о доступе к информационным системам и информационно-телекоммуникационным сетям, приспособленным для использования инвалидами и лицами с ограниченными возможностями здоровья</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>purposeEios</Value>
+        <Description>Наличие в образовательной организации электронной информационно-образовательной среды</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>purposeInternet</Value>
+        <Description>Общее количество компьютеров с выходом в информационно-телекоммуникационную сеть «Интернет», к которым имеют доступ обучающиеся</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>purposeEbs</Value>
+        <Description>Общее количество ЭБС, к которым имеют доступ обучающиеся (собственных или на договорной основе)</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>eoisOwn</Value>
+        <Description>Наличие собственных электронных образовательных и информационных ресурсов</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>eoisSide</Value>
+        <Description>Наличие сторонних электронных образовательных и информационных ресурсов</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>bdec</Value>
+        <Description>Наличие базы данных электронного каталога</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>erList</Value>
+        <Description>Сведения об электронных образовательных ресурсах</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>erListOvz</Value>
+        <Description>Сведения об электронных образовательных ресурсах, приспособленных для использования инвалидами и лицами с ограниченными возможностями здоровья</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>techOvz</Value>
+        <Description>Сведения о наличии специальных технических средств обучения коллективного и индивидуального пользования для инвалидов и лиц с ограниченными возможностями здоровья</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+    </Data>
+    <Tables>
+      <TableSerializable>
+        <TableItemprops>
+          <TableItempropSerializable>
+            <Value>purposeCab</Value>
+            <Description>Сведения о наличии оборудованных учебных кабинетов</Description>
+            <Type>Required</Type>
+            <IsMainTag>true</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduCode</Value>
+            <Description>Код специальности, направления подготовки</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduName</Value>
+            <Description>Наименование специальности, направления подготовки</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>purposeCabOvz</Value>
+            <Description>Сведения о наличии оборудованных учебных кабинетов, приспособленных для использования инвалидами и лицами с ограниченными возможностями здоровья</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+        </TableItemprops>
+        <Name>Сведения о наличии оборудованных учебных кабинетов</Name>
+        <Type>Required</Type>
+      </TableSerializable>
+      <TableSerializable>
+        <TableItemprops>
+          <TableItempropSerializable>
+            <Value>purposePrac</Value>
+            <Description>Сведения о наличии объектов для проведения практических занятий</Description>
+            <Type>Required</Type>
+            <IsMainTag>true</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduCode</Value>
+            <Description>Код специальности, направления подготовки</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>eduName</Value>
+            <Description>Наименование специальности, направления подготовки</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>purposePracOvz</Value>
+            <Description>Сведения о наличии объектов для проведения практических занятий, приспособленных для использования инвалидами и лицами с ограниченными возможностями здоровья</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+        </TableItemprops>
+        <Name>Сведения о наличии объектов для проведения практических занятий</Name>
+        <Type>Required</Type>
+      </TableSerializable>
+    </Tables>
+  </DivisionSerializable>
+  <DivisionSerializable>
+    <Url>sveden/grants</Url>
+    <Description>Стипендии и иные виды материальной поддержки</Description>
+    <Data>
+      <ItempropSerializable>
+        <Value>grant</Value>
+        <Description>Главный тег</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>typeGrant</Value>
+        <Description>Сведения о видах стипендий</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>localGrant</Value>
+        <Description>Ссылка на копию локального нормативного правового акта</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>federalGrant</Value>
+        <Description>Ссылка на копию нормативного правового акта федерального уровня, регламентирующего стипендиальное обеспечение</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>hostelInfo</Value>
+        <Description>Сведения о наличии общежития, интерната</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>hostelInfoOvz</Value>
+        <Description>Сведения о наличии общежития, интерната, приспособленных для использования инвалидами и лицами с ограниченными возможностями здоровья</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>hostelNum</Value>
+        <Description>Сведения о количестве мест в общежитии, интернате для иногородних обучающихся</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>hostelNumOvz</Value>
+        <Description>Сведения о количестве мест в общежитии, интернате, приспособленных для использования инвалидами и лицами с ограниченными возможностями здоровья</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>localActObSt</Value>
+        <Description>Копия локального нормативного акта, регламентирующего размер платы за пользование жилым помещением и коммунальные услуги в общежитии</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>support</Value>
+        <Description>Информация об иных видах материальной поддержки обучающихся</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>graduateJob</Value>
+        <Description>Информация о трудоустройстве выпускников </Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+    </Data>
+    <Tables />
+  </DivisionSerializable>
+  <DivisionSerializable>
+    <Url>sveden/paid_edu</Url>
+    <Description>Платные образовательные услуги</Description>
+    <Data>
+      <ItempropSerializable>
+        <Value>paidEdu</Value>
+        <Description>Информация о порядке оказания платных образовательных услуг</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+    </Data>
+    <Tables />
+  </DivisionSerializable>
+  <DivisionSerializable>
+    <Url>sveden/budget</Url>
+    <Description>Финансово-хозяйственная деятельность</Description>
+    <Data>
+      <ItempropSerializable>
+        <Value>volume</Value>
+        <Description>Главный тег</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>finBFVolume</Value>
+        <Description>Информация об объёме образовательной деятельности, финансовое обеспечение которой осуществляется за счёт бюджетных ассигнований федерального бюджета</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>finBRVolume</Value>
+        <Description>Информация об объёме образовательной деятельности, финансовое обеспечение которой осуществляется за счёт бюджетов субъектов Российской Федерации</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>finBMVolume</Value>
+        <Description>Информация об объёме образовательной деятельности, финансовое обеспечение которой осуществляется за счёт местных бюджетов</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>finPVolume</Value>
+        <Description>Информация об объёме образовательной деятельности, финансовое обеспечение которой осуществляется по договорам об образовании за счёт средств физических и (или) юридических лиц</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>finRec</Value>
+        <Description>Информация о поступлении и расходовании финансовых и материальных средств</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+      <ItempropSerializable>
+        <Value>planFinRec</Value>
+        <Description>Ссылка на копию плана финансово-хозяйственной деятельности</Description>
+        <Type>Required</Type>
+      </ItempropSerializable>
+    </Data>
+    <Tables />
+  </DivisionSerializable>
+  <DivisionSerializable>
+    <Url>sveden/vacant</Url>
+    <Description>Вакантные места для приема (перевода)</Description>
+    <Data />
+	<User>user1</User>
+    <Tables>
+      <TableSerializable>
+        <TableItemprops>
+          <TableItempropSerializable>
+            <Value>vacant</Value>
+            <Description>Главный тег</Description>
+            <Type>Required</Type>
+            <IsMainTag>true</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>nameProgVacant</Value>
+            <Description>Сведения о наименовании образовательной программы</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>specialVacant</Value>
+            <Description>Сведения о наименовании специальности / направления подготовки</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>bachelorVacant</Value>
+            <Description>Сведения об уровне образования: Бакалавриат</Description>
+            <Type>Selective</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>specialityVacant</Value>
+            <Description>Сведения об уровне образования: Специалитет</Description>
+            <Type>Selective</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>magistracyVacant</Value>
+            <Description>Сведения об уровне образования: Магистратура</Description>
+            <Type>Selective</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>postgraduateVacant</Value>
+            <Description>Сведения об уровне образования: Аспирантура</Description>
+            <Type>Selective</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>numberBFVacant</Value>
+            <Description>Сведения о количестве вакантных мест для приёма (перевода) за счёт бюджетных ассигнований федерального бюджета</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>numberBRVacant</Value>
+            <Description>Сведения о количестве вакантных мест для приёма (перевода) за счёт бюджетных ассигнований бюджетов субъекта Российской Федерации</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>numberBMVacant</Value>
+            <Description>Сведения о количестве вакантных мест для приёма (перевода) за счёт бюджетных ассигнований местных бюджетов</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+          <TableItempropSerializable>
+            <Value>numberPVacant</Value>
+            <Description>Сведения о количестве вакантных мест для приёма (перевода) за счёт средств физических и (или) юридических лиц</Description>
+            <Type>Required</Type>
+            <IsMainTag>false</IsMainTag>
+          </TableItempropSerializable>
+        </TableItemprops>
+        <Name>Вакантные места для приема (перевода)</Name>
+        <Type>Required</Type>
+      </TableSerializable>
+    </Tables>
+  </DivisionSerializable>
+</ArrayOfDivisionSerializable>

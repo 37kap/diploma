@@ -13,18 +13,33 @@ namespace SiteInfoMonitoring.Core
         private string SiteName;
         private List<Division> Divisions;
         public XmlParser XmlParser;
+        public Exception XmlException;
         public SiteChecker(string siteName)
         {
-            SiteName = siteName.StartsWith("http") ? siteName : "http://" + siteName;
-            XmlParser = new XmlParser(SiteName, SettingsManager.Settings.XmlFile);
-            Divisions = XmlParser.GetDivisions();
+            try
+            {
+                SiteName = siteName.StartsWith("http") ? siteName : "http://" + siteName;
+                XmlParser = new XmlParser(SiteName);
+                Divisions = XmlParser.LoadDivisions();
+            }
+            catch (Exception ex)
+            {
+                XmlException = ex;
+            }
         }
 
         public SiteChecker(string siteName, string userName)
         {
-            SiteName = siteName.StartsWith("http") ? siteName : "http://" + siteName;
-            XmlParser = new XmlParser(SiteName, SettingsManager.Settings.XmlFile);
-            Divisions = XmlParser.GetDivisions(userName);            
+            try
+            {
+                SiteName = siteName.StartsWith("http") ? siteName : "http://" + siteName;
+                XmlParser = new XmlParser(SiteName);
+                Divisions = XmlParser.LoadDivisions(userName);
+            }
+            catch (Exception ex)
+            {
+                XmlException = ex;
+            }
         }
 
         /// <summary>

@@ -162,6 +162,7 @@
     <Compile Include="Controllers\DivisionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Core\EmailCreater.cs" />
     <Compile Include="Core\Enums\ItempropTypeEnum.cs" />
     <Compile Include="Core\Enums\RolesEnum.cs" />
@@ -189,6 +190,11 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserProblems.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\DivisionSerializable.cs" />
+    <Compile Include="Serialization\ItempropSerializable.cs" />
+    <Compile Include="Serialization\TableItempropSerializable.cs" />
+    <Compile Include="Serialization\TableSerializable.cs" />
+    <Compile Include="Serialization\UserSerializable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -230,6 +236,8 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Home\UserLogin.cshtml" />
     <Content Include="Views\Setting\Index.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

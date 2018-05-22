@@ -1,9 +1,12 @@
 ﻿using SiteInfoMonitoring.Core.Enums;
 using SiteInfoMonitoring.Models;
+using SiteInfoMonitoring.Serialization;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace SiteInfoMonitoring.Core.Parsers
 {
@@ -15,13 +18,13 @@ namespace SiteInfoMonitoring.Core.Parsers
         private List<Division> Divisions;
         public Exception Exception;
 
-        public XmlParser(string siteName = "", string xml_file = "Divisions.XML")
+        public XmlParser(string siteName = "")
         {
             SiteName = siteName;
-            FilePath = xml_file;
         }
 
-        public List<Division> GetDivisions()
+        #region old methods
+        private List<Division> GetDivisions()
         {
             Users = Users == null || Users.Count == 0 ? GetUsers() : Users;
             Divisions = new List<Division>();
@@ -173,7 +176,7 @@ namespace SiteInfoMonitoring.Core.Parsers
             return Divisions;
         }
 
-        public List<Division> GetDivisions(string userName)
+        private List<Division> GetDivisions(string userName)
         {
             Users = GetUserByName(userName);
             Divisions = new List<Division>();
@@ -362,7 +365,7 @@ namespace SiteInfoMonitoring.Core.Parsers
             return Divisions;
         }
 
-        public List<User> GetUserByName(string userName)
+        private List<User> GetUserByName(string userName)
         {
             try
             {
@@ -439,7 +442,7 @@ namespace SiteInfoMonitoring.Core.Parsers
             return Users;
         }
 
-        public List<User> GetUsers()
+        private List<User> GetUsers()
         {
             try
             {
@@ -508,6 +511,220 @@ namespace SiteInfoMonitoring.Core.Parsers
                 Exception = ex;
             }
             return Users;
+        }
+        #endregion
+
+        public void SaveDivisions(List<Division> divisions)
+        {
+            var divs = divisions.Select(d => new Serialization.DivisionSerializable()
+            {
+                Url = d.Url.ToString().Remove(0, d.Url.ToString().IndexOf(SiteName) + SiteName.Length + 1),
+                Description = d.Description,
+                Data = d.Data != null ? d.Data.Select(dt => new Serialization.ItempropSerializable()
+                {
+                    Description = dt.Description,
+                    Value = dt.Value,
+                    Type = dt.Type,
+                    User = dt.ResponsibleUser != null ? dt.ResponsibleUser.Login : null
+                }).ToList() : null,
+                User = d.ResponsibleUser != null ? d.ResponsibleUser.Login : null,
+                Tables = d.Tables != null ? d.Tables.Select(t => new TableSerializable()
+                {
+                    Type = t.Type,
+                    Name = t.Name,
+                    User = t.ResponsibleUser != null ? t.ResponsibleUser.Login : null,
+                    TableItemprops = t.TableItemprops != null ? t.TableItemprops.Select(tip => new TableItempropSerializable()
+                    {
+                        Description = tip.Description,
+                        Type = tip.Type,
+                        User = tip.ResponsibleUser != null ? tip.ResponsibleUser.Login : null,
+                        Value = tip.Value,
+                        IsMainTag = tip.IsMainTag
+                    }).ToList() : null
+                }).ToList() : null,
+            }).ToArray();
+            XmlSerializer formatter = new XmlSerializer(typeof(DivisionSerializable[]));
+
+            File.Delete(Settings.SettingsManager.Settings.XmlFileDivisions);
+            try
+            {
+                using (FileStream fs = new FileStream(Settings.SettingsManager.Settings.XmlFileDivisions, FileMode.OpenOrCreate))
+                {
+                    formatter.Serialize(fs, divs);
+                }
+            }
+            catch (Exception exception)
+            {
+                using (FileStream fs = new FileStream(Settings.SettingsManager.Settings.XmlFileDivisions.ToLower().Replace(".xml", "_backup.xml"), FileMode.OpenOrCreate))
+                {
+                    formatter.Serialize(fs, divs);
+                }
+            }
+        }
+
+        public List<Division> LoadDivisions()
+        {
+            List<User> users = LoadUsers();
+            List<Division> divs = new List<Division>();
+            DivisionSerializable[] divisions = null;
+            XmlSerializer formatter = new XmlSerializer(typeof(DivisionSerializable[]));
+            using (FileStream fs = new FileStream(Settings.SettingsManager.Settings.XmlFileDivisions, FileMode.OpenOrCreate))
+            {
+                divisions = (DivisionSerializable[])formatter.Deserialize(fs);
+            }
+
+            divs = divisions.Select(d => new Division()
+            {
+                Url = new Uri(SiteName + "/" + d.Url.ToString()),
+                Description = d.Description,
+                Data = d.Data != null ? d.Data.Select(dt => new Itemprop()
+                {
+                    Description = dt.Description,
+                    Value = dt.Value,
+                    Type = dt.Type,
+                    ResponsibleUser = dt.User != null && dt.User != "" && users.Any(u => u.Login == dt.User) ?
+                                      users.First(u => u.Login == dt.User) : null
+                }).ToList() : null,
+                ResponsibleUser = d.User != null && d.User != "" && users.Any(u => u.Login == d.User) ?
+                                  users.First(u => u.Login == d.User) : null,
+                Tables = d.Tables != null ? d.Tables.Select(t => new Table()
+                {
+                    Type = t.Type,
+                    Name = t.Name,
+                    ResponsibleUser = t.User != null && t.User != "" && users.Any(u => u.Login == t.User) ?
+                                  users.First(u => u.Login == t.User) : null,
+                    TableItemprops = t.TableItemprops != null ? t.TableItemprops.Select(tip => new TableItemprop()
+                    {
+                        Description = tip.Description,
+                        Type = tip.Type,
+                        ResponsibleUser = tip.User != null && tip.User != "" && users.Any(u => u.Login == tip.User) ?
+                                  users.First(u => u.Login == tip.User) : null,
+                        Value = tip.Value,
+                        IsMainTag = tip.IsMainTag
+                    }).ToList() : null
+                }).ToList() : null,
+            }).ToList();
+            return divs;
+        }
+
+        public List<Division> LoadDivisions(string userName)
+        {
+            User user = LoadUserByName(userName);
+            List<Division> divs = new List<Division>();
+            DivisionSerializable[] divisions = null;
+            XmlSerializer formatter = new XmlSerializer(typeof(DivisionSerializable[]));
+            using (FileStream fs = new FileStream(Settings.SettingsManager.Settings.XmlFileDivisions, FileMode.OpenOrCreate))
+            {
+                divisions = (DivisionSerializable[])formatter.Deserialize(fs);
+            }
+
+            divs = divisions.Where(d => d.User == userName || d.Data.Any(dt => dt.User == userName) || d.Tables.Any(t => t.User == userName))
+                .Select(d => new Division()
+                {
+                    Url = new Uri(SiteName + "/" + d.Url.ToString()),
+                    Description = d.Description,
+                    Data = d.Data != null ? d.Data.Select(dt => new Itemprop()
+                    {
+                        Description = dt.Description,
+                        Value = dt.Value,
+                        Type = dt.Type,
+                        ResponsibleUser = dt.User != null && dt.User != "" && userName == dt.User ? user : null
+                    }).ToList() : null,
+                    ResponsibleUser = d.User != null && d.User != "" && userName == d.User ? user : null,
+                    Tables = d.Tables != null ? d.Tables.Select(t => new Table()
+                    {
+                        Type = t.Type,
+                        Name = t.Name,
+                        ResponsibleUser = t.User != null && t.User != "" && userName == t.User ? user : null,
+                        TableItemprops = t.TableItemprops != null ? t.TableItemprops.Select(tip => new TableItemprop()
+                        {
+                            Description = tip.Description,
+                            Type = tip.Type,
+                            ResponsibleUser = tip.User != null && tip.User != "" && userName == tip.User ? user : null,
+                            Value = tip.Value,
+                            IsMainTag = tip.IsMainTag
+                        }).ToList() : null
+                    }).ToList() : null,
+                }).ToList();
+            divs.Select(d => d.Data.RemoveAll(data => (d.ResponsibleUser == null || d.ResponsibleUser.Login != userName) && (data.ResponsibleUser == null || data.ResponsibleUser.Login != userName)));
+            divs.Select(d => d.Tables.RemoveAll(t => (d.ResponsibleUser == null || d.ResponsibleUser.Login != userName) && (t.ResponsibleUser == null || t.ResponsibleUser.Login != userName)));
+            return divs;
+        }
+
+        public void SaveUsers(List<User> users)
+        {
+            if (users.Any(u => u.Email ==null || u.Email =="" || u.Login == null || u.Login == "" ||
+            u.Password == null || u.Password == "" || u.Name == null || u.Name == "" ))
+            {
+                throw new Exception("Должны быть заполнены все поля.");
+            }
+            var us = users.Select(d => new UserSerializable()
+            {
+                Email = d.Email,
+                Login = d.Login,
+                Name = d.Name,
+                Password = d.Password,
+                Role = d.Role
+            }).ToArray();
+            XmlSerializer formatter = new XmlSerializer(typeof(UserSerializable[]));
+            File.Delete(Settings.SettingsManager.Settings.XmlFileUsers);
+            try
+            {
+                using (FileStream fs = new FileStream(Settings.SettingsManager.Settings.XmlFileUsers, FileMode.OpenOrCreate))
+                {
+                    formatter.Serialize(fs, us);
+                }
+            }
+            catch (Exception exception)
+            {
+                using (FileStream fs = new FileStream(Settings.SettingsManager.Settings.XmlFileUsers.ToLower().Replace(".xml", "_backup.xml"), FileMode.OpenOrCreate))
+                {
+                    formatter.Serialize(fs, us);
+                }
+            }
+        }
+
+        public List<User> LoadUsers()
+        {
+            try
+            {
+                List<UserSerializable> users = null;
+                XmlSerializer formatter = new XmlSerializer(typeof(List<UserSerializable>));
+                using (FileStream fs = new FileStream(Settings.SettingsManager.Settings.XmlFileUsers, FileMode.OpenOrCreate))
+                {
+                    users = (List<UserSerializable>)formatter.Deserialize(fs);
+                }
+                return users.Select(d => new User()
+                {
+                    Email = d.Email,
+                    Login = d.Login,
+                    Name = d.Name,
+                    Password = d.Password,
+                    Role = d.Role
+                }).ToList();
+            }
+            catch (Exception ex)
+            {
+                return new List<User> { new User() { Email = "asasas@asas.ru", Login = "superman", Name = "Superman", Password = "2w3e4r", Role = RolesEnum.admin } };
+            }
+        }
+
+        public User LoadUserByName(string userName)
+        {
+            List<UserSerializable> users = null;
+            XmlSerializer formatter = new XmlSerializer(typeof(List<UserSerializable>));
+            using (FileStream fs = new FileStream(Settings.SettingsManager.Settings.XmlFileUsers, FileMode.OpenOrCreate))
+            {
+                users = (List<UserSerializable>)formatter.Deserialize(fs);
+            }
+            return users.Where(u => u.Login == userName).Select(d => new User()
+            {
+                Email = d.Email,
+                Login = d.Login,
+                Name = d.Name,
+                Password = d.Password,
+                Role = d.Role
+            }).First();
         }
     }
 }

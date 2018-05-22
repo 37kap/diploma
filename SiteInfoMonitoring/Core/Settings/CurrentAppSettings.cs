@@ -18,8 +18,11 @@ namespace SiteInfoMonitoring.Core.Settings
         [Display(Name = "SMTP Хост")]
         public string SmtpHost { get; set; }
 
-        [Display(Name = "Имя XML-файла")]
-        public string XmlFile { get; set; }
+        [Display(Name = "Имя XML-файла с описанием страниц обязательного раздела")]
+        public string XmlFileDivisions { get; set; }
+
+        [Display(Name = "Имя XML-файла с пользователями")]
+        public string XmlFileUsers { get; set; }
 
         [Display(Name = "Отправлять письмо с результатом после проверки в ручном режиме")]
         public bool SendEmails { get; set; }

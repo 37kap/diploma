@@ -2,6 +2,7 @@
 using SiteInfoMonitoring.Core.Parsers;
 using SiteInfoMonitoring.Core.Settings;
 using SiteInfoMonitoring.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -11,7 +12,7 @@ namespace SiteInfoMonitoring.Controllers
     public class DivisionController : Controller
     {
         // GET: Division
-        [Authorize(Roles ="")]
+        [Authorize(Roles = "")]
         public ActionResult Index()
         {
             return View();
@@ -22,27 +23,37 @@ namespace SiteInfoMonitoring.Controllers
         {
             if (name != null)
             {
-                SiteChecker siteChecker;
+                SiteChecker siteChecker = null;
                 EduSiteParser htmlParser;
-                List<Division> divs;
-                if (IsAdminUser())
+                List<Division> divs = new List<Division>();
+                try
                 {
-                    siteChecker = new SiteChecker(name);
-                    divs = siteChecker.CheckDivisionsExist();
-                    htmlParser = new EduSiteParser(name, divs, siteChecker.XmlParser.GetUsers());
+                    if (IsAdminUser())
+                    {
+                        siteChecker = new SiteChecker(name);
+                        divs = siteChecker.CheckDivisionsExist();
+                        htmlParser = new EduSiteParser(name, divs, siteChecker.XmlParser.LoadUsers());
+                    }
+                    else
+                    {
+                        siteChecker = new SiteChecker(name, User.Identity.Name);
+                        divs = siteChecker.CheckDivisionsExist();
+                        htmlParser = new EduSiteParser(name, divs, new List<User>() { siteChecker.XmlParser.LoadUserByName(User.Identity.Name) });
+                    }
+                    ViewBag.SiteAvailability = "Сайт " + name + (siteChecker.CheckSiteAvailability() ? " доступен" : " недоступен");
+                    if (siteChecker.XmlParser.Exception != null)
+                    {
+                        ViewBag.Exception = siteChecker.XmlParser.Exception;
+                    }
+                    htmlParser.StartParse();
                 }
-                else
+                catch
                 {
-                    siteChecker = new SiteChecker(name, User.Identity.Name);
-                    divs = siteChecker.CheckDivisionsExist();
-                    htmlParser = new EduSiteParser(name, divs, siteChecker.XmlParser.GetUserByName(User.Identity.Name));
+                    if (siteChecker.XmlException.InnerException.Message == "Отсутствует корневой элемент.")
+                    {
+                        ViewBag.Exception = "Не найден XML-файл с описанием страниц обязательного раздела по пути \"" + SettingsManager.Settings.XmlFileDivisions + "\"";
+                    }
                 }
-                ViewBag.SiteAvailability = "Сайт " + name + (siteChecker.CheckSiteAvailability() ? " доступен" : " недоступен");                
-                if (siteChecker.XmlParser.Exception != null)
-                {
-                    ViewBag.Exception = siteChecker.XmlParser.Exception;
-                }
-                htmlParser.StartParse();
                 return View(divs);
             }
             else
@@ -56,7 +67,7 @@ namespace SiteInfoMonitoring.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                var user = new XmlParser().GetUsers().FirstOrDefault(u => u.Login == User.Identity.Name);
+                var user = new XmlParser().LoadUsers().FirstOrDefault(u => u.Login == User.Identity.Name);
                 if (user != null)
                 {
                     if (user.Role == Core.Enums.RolesEnum.admin)
