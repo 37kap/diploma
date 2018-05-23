@@ -30,9 +30,15 @@
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer style="text-align: right">
+        <div class="wrapper">
+
+            <div class="content">
+                @RenderBody()
+            </div>
+            <hr />
+
+        </div>
+        <footer class="footer" style="text-align: right">
             <p>&copy; @DateTime.Now.Year – ИГХТУ</p>
         </footer>
     </div>

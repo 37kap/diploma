@@ -28,7 +28,7 @@ namespace SiteInfoMonitoring.Controllers
             else
             {
                 return Redirect("/Home/Index");
-            }            
+            }
         }
 
         [Authorize]
@@ -73,6 +73,7 @@ namespace SiteInfoMonitoring.Controllers
             }
         }
 
+        [Authorize]
         public ActionResult Add()
         {
             if (IsAdminUser())
@@ -86,6 +87,7 @@ namespace SiteInfoMonitoring.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Add(User user)
         {
             if (IsAdminUser())

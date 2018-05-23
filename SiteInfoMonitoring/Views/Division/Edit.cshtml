@@ -1,0 +1,155 @@
+﻿@model SiteInfoMonitoring.Models.Division
+@{
+    ViewBag.Title = "Редактировать страницу";
+}
+
+<div>
+    <h3 style="text-align: center">@(ViewBag.Title + " \"" + Model.Description + "\"")</h3>
+    <hr>
+    <form method="post">
+        <div class="form-group">
+            @Html.LabelFor(x => x.Description)
+            @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Description)
+
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.ShortUrl)
+            @Html.TextBoxFor(x => x.ShortUrl, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.ShortUrl)
+        </div>
+        <div class="form-group">
+            <label for="user">Ответственный пользователь</label>
+            @Html.DropDownList("user", (IEnumerable<SelectListItem>)((SelectList)ViewBag.Users).Items, "Выберите пользователя", new { @class = "form-control" })
+        </div>
+        @ViewBag.Message
+        <p>
+            <input type="submit" value="Сохранить" class="btn btn-primary" />
+        </p>
+    </form>
+    <hr>
+    <div class="form-group">
+        <h4>Атрибуты:</h4>
+        <table class="table table-bordered">
+            <tr class="header">
+                <td><p>Атрибут</p></td>
+                <td><p>Описание</p></td>
+                <td><p>Тип</p></td>
+                <td><p>Ответственный</p></td>
+                <td><p>Редактировать</p></td>
+                <td><p>Удалить</p></td>
+            </tr>
+            @foreach (SiteInfoMonitoring.Models.Itemprop i in Model.Data)
+            {
+                string user = "";
+                string type = "";
+                if (i.ResponsibleUser == null)
+                {
+                    user = "";
+                }
+                else
+                {
+                    user = i.ResponsibleUser.Login;
+                }
+
+                if (i.Type == SiteInfoMonitoring.Core.Enums.ItempropTypeEnum.Required)
+                {
+                    type = "Обязательный";
+                }
+                else if (i.Type == SiteInfoMonitoring.Core.Enums.ItempropTypeEnum.Optional)
+                {
+                    type = "Необязательный";
+                }
+                else if (i.Type == SiteInfoMonitoring.Core.Enums.ItempropTypeEnum.Selective)
+                {
+                    type = "Выборочный";
+                }
+                <tr>
+                    <td><p>@i.Value</p></td>
+                    <td><p>@i.Description</p></td>
+                    <td><p>@type</p></td>
+                    <td><p>@user</p></td>
+                    <td><p><a href="/Division/EditData?name=@i.Value">Редактировать</a></p></td>
+                    <td><p><a href="/Division/DeleteData?name=@i.Value">Удалить</a></p></td>
+                </tr>
+            }
+            @if (Model.Data.Count == 0)
+            {
+                <tr>
+                    <td><p>Отсутствуют</p></td>
+                    <td><p>-</p></td>
+                    <td><p>-</p></td>
+                    <td><p>-</p></td>
+                    <td><p>-</p></td>
+                    <td><p>-</p></td>
+                </tr>
+            }
+        </table>
+        <form method="get" action="/Division/AddData">
+            <p>
+                <input type="submit" value="Добавить" class="btn btn-primary" />
+            </p>
+        </form>
+    </div>
+    <hr>
+    <div class="form-group">
+        <h4>Таблицы:</h4>
+        <table class="table table-bordered">
+            <tr class="header">
+                <td><p>Название</p></td>
+                <td><p>Тип</p></td>
+                <td><p>Ответственный</p></td>
+                <td><p>Редактировать</p></td>
+                <td><p>Удалить</p></td>
+            </tr>
+            @{
+                int k = 1;
+                foreach (SiteInfoMonitoring.Models.Table t in Model.Tables)
+                {
+                    string user = "";
+                    string type = "";
+                    if (t.ResponsibleUser == null)
+                    {
+                        user = "";
+                    }
+                    else
+                    {
+                        user = t.ResponsibleUser.Login;
+                    }
+
+                    if (t.Type == SiteInfoMonitoring.Core.Enums.TableTypeEnum.Required)
+                    {
+                        type = "Обязательный";
+                    }
+                    else if (t.Type == SiteInfoMonitoring.Core.Enums.TableTypeEnum.Optional)
+                    {
+                        type = "Необязательный";
+                    }
+                    <tr>
+                        <td><p>@t.Name</p></td>
+                        <td><p>@type</p></td>
+                        <td><p>@user</p></td>
+                        <td><p><a href="/Division/EditTable?id=@k">Редактировать</a></p></td>
+                        <td><p><a href="/Division/DeleteTable?id=@k">Удалить</a></p></td>
+                    </tr>
+                    k = k + 1;
+                }
+            }
+            @if (Model.Tables.Count == 0)
+            {
+                <tr>
+                    <td><p>Отсутствуют</p></td>
+                    <td><p>-</p></td>
+                    <td><p>-</p></td>
+                    <td><p>-</p></td>
+                    <td><p>-</p></td>
+                </tr>
+            }
+        </table>
+        <form method="get" action="/Division/AddTable">
+            <p>
+                <input type="submit" value="Добавить" class="btn btn-primary" />
+            </p>
+        </form>
+    </div>
+</div>

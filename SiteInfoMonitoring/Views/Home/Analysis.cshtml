@@ -4,8 +4,19 @@
 
 <div class="jumbotron">
     <h1 style="text-align: center; margin-bottom: 30px; margin-top: 10px;">Проверка микроразметки</h1>
-    <form method="get" action="/Division/Check" class="form-inline" style="text-align: center">
+    <form id="form-data" method="get" action="/Division/Check" class="form-inline" style="text-align: center">
         <input class="form-control" type="text" name="name" placeholder="http://" value="@ViewBag.SiteName" style="width: 50%; height: 45px;"/>
-        <input type="submit" class="btn btn-primary btn-lg" value="Проверить" />
-    </form>
+        <input type="submit" id="submit-btn" class="btn btn-primary btn-lg" value="Проверить" onclick="return onSubmit()"/>
+    </form>    
 </div>
+<div id="loader" style="text-align: center; display: none">
+    <img src="~/Content/Images/loading.gif" width="497" height="280" align="middle" vspace="5" hspace="5">
+</div>
+<script>
+    function onSubmit() {
+        $("#form-data").submit();
+        $("#submit-btn").prop('disabled', true);
+        $("#loader").show();
+        return true;
+    }
+</script>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SiteInfoMonitoring.Models.Division>
+@{
+    ViewBag.Title = "Страницы обязательного раздела";
+}
+<div>
+    <h3 style="text-align: center">@ViewBag.Title</h3>
+    <hr>
+    <table class="table table-bordered">
+        <tr class="header">
+            <td><p>Название</p></td>
+            <td><p>Ответственный</p></td>
+            <td><p>Ссылка</p></td>
+            <td><p>Редактировать</p></td>
+            <td><p>Удалить</p></td>
+        </tr>
+        @foreach (SiteInfoMonitoring.Models.Division d in Model)
+        {
+            string login = "";
+            if (d.ResponsibleUser != null) { login = d.ResponsibleUser.Login; }
+            <tr>
+                <td><p>@d.Description</p></td>
+                <td>
+                    <p>
+                        @login
+                        @if (d.ResponsibleUser == null)
+                        {
+                            <a href="/Division/AddUser/@d.Id">Добавить</a>
+                        }
+                    </p>
+                </td>
+                <td><p><a href="@d.Url">@d.Url.ToString().Remove(0, d.Url.ToString().IndexOf(d.Url.Host) + d.Url.Host.Length + 1)</a></p></td>
+
+                <td><p><a href="/Division/Edit?id=@d.Id">Редактировать</a></p></td>
+
+                <td><p><a href="/Division/Delete?id=@d.Id">Удалить</a></p></td>
+
+            </tr>
+        }
+    </table>
+    <form method="get" action="/Division/Add">
+        <p>
+            <input type="submit" value="Добавить" class="btn btn-primary" />
+        </p>
+    </form>
+    @ViewBag.ResultOfSave
+</div>
+

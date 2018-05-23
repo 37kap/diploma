@@ -238,6 +238,10 @@
     <Content Include="Views\Setting\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Add.cshtml" />
+    <Content Include="Views\Division\Index.cshtml" />
+    <Content Include="Views\Division\Add.cshtml" />
+    <Content Include="Views\Division\AddUser.cshtml" />
+    <Content Include="Views\Division\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

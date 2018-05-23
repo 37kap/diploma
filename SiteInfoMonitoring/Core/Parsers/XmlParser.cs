@@ -13,7 +13,6 @@ namespace SiteInfoMonitoring.Core.Parsers
     public class XmlParser
     {
         private string SiteName;
-        private string FilePath;
         private List<User> Users;
         private List<Division> Divisions;
         public Exception Exception;
@@ -35,7 +34,7 @@ namespace SiteInfoMonitoring.Core.Parsers
                     throw new Exception("Пользователи в XML-файле не найдены");
                 }
                 XmlDocument xDoc = new XmlDocument();
-                xDoc.Load(FilePath);
+                xDoc.Load(Settings.SettingsManager.Settings.XmlFileDivisions);
                 XmlNode xDivisions = xDoc.GetElementsByTagName("divisions")[0];
                 foreach (XmlNode xnode in xDivisions)
                 {
@@ -43,11 +42,11 @@ namespace SiteInfoMonitoring.Core.Parsers
                     if (xnode.Attributes.Count > 0)
                     {
                         XmlNode attr = xnode.Attributes.GetNamedItem("show");
-                        if (attr != null)
+                        /*if (attr != null)
                         {
                             bool.TryParse(attr.Value, out div.IsShowed);
                         }
-                        attr = null;
+                        attr = null;*/
                         attr = xnode.Attributes.GetNamedItem("url");
                         if (attr != null)
                         {
@@ -187,7 +186,7 @@ namespace SiteInfoMonitoring.Core.Parsers
                     throw new Exception("Пользователь в XML-файле не найден");
                 }
                 XmlDocument xDoc = new XmlDocument();
-                xDoc.Load(FilePath);
+                xDoc.Load(Settings.SettingsManager.Settings.XmlFileDivisions);
                 XmlNode xDivisions = xDoc.GetElementsByTagName("divisions")[0];
                 foreach (XmlNode xnode in xDivisions)
                 {
@@ -196,10 +195,10 @@ namespace SiteInfoMonitoring.Core.Parsers
                     if (xnode.Attributes.Count > 0)
                     {
                         XmlNode attr = xnode.Attributes.GetNamedItem("show");
-                        if (attr != null)
+                        /*if (attr != null)
                         {
                             bool.TryParse(attr.Value, out div.IsShowed);
-                        }
+                        }*/
                         attr = null;
                         attr = xnode.Attributes.GetNamedItem("url");
                         if (attr != null)
@@ -371,7 +370,7 @@ namespace SiteInfoMonitoring.Core.Parsers
             {
                 Users = new List<User>();
                 XmlDocument xDoc = new XmlDocument();
-                xDoc.Load(FilePath);
+                xDoc.Load(Settings.SettingsManager.Settings.XmlFileUsers);
                 XmlNode xDivisions = xDoc.GetElementsByTagName("users")[0];
                 foreach (XmlNode xnode in xDivisions)
                 {
@@ -448,7 +447,7 @@ namespace SiteInfoMonitoring.Core.Parsers
             {
                 Users = new List<User>();
                 XmlDocument xDoc = new XmlDocument();
-                xDoc.Load(FilePath);
+                xDoc.Load(Settings.SettingsManager.Settings.XmlFileUsers);
                 XmlNode xDivisions = xDoc.GetElementsByTagName("users")[0];
                 foreach (XmlNode xnode in xDivisions)
                 {
@@ -572,7 +571,7 @@ namespace SiteInfoMonitoring.Core.Parsers
             {
                 divisions = (DivisionSerializable[])formatter.Deserialize(fs);
             }
-
+            SiteName = SiteName == "" ? Settings.SettingsManager.Settings.DefaultSiteAddress : SiteName;
             divs = divisions.Select(d => new Division()
             {
                 Url = new Uri(SiteName + "/" + d.Url.ToString()),
@@ -604,6 +603,11 @@ namespace SiteInfoMonitoring.Core.Parsers
                     }).ToList() : null
                 }).ToList() : null,
             }).ToList();
+            int k = 1;
+            foreach (var div in divs)
+            {
+                div.Id = k++;
+            }
             return divs;
         }
 
@@ -617,7 +621,7 @@ namespace SiteInfoMonitoring.Core.Parsers
             {
                 divisions = (DivisionSerializable[])formatter.Deserialize(fs);
             }
-
+            SiteName = SiteName == "" ? Settings.SettingsManager.Settings.DefaultSiteAddress : SiteName;
             divs = divisions.Where(d => d.User == userName || d.Data.Any(dt => dt.User == userName) || d.Tables.Any(t => t.User == userName))
                 .Select(d => new Division()
                 {
@@ -653,8 +657,8 @@ namespace SiteInfoMonitoring.Core.Parsers
 
         public void SaveUsers(List<User> users)
         {
-            if (users.Any(u => u.Email ==null || u.Email =="" || u.Login == null || u.Login == "" ||
-            u.Password == null || u.Password == "" || u.Name == null || u.Name == "" ))
+            if (users.Any(u => u.Email == null || u.Email == "" || u.Login == null || u.Login == "" ||
+            u.Password == null || u.Password == "" || u.Name == null || u.Name == ""))
             {
                 throw new Exception("Должны быть заполнены все поля.");
             }

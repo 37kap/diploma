@@ -1,17 +1,34 @@
 ﻿using SiteInfoMonitoring.Core;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SiteInfoMonitoring.Models
 {
     public class Division
     {
-        public bool IsShowed = true;
-        public Uri Url;
+
+        public int Id { get; set; }
+
+        [Display(Name = "Ссылка на страницу (без указания хоста)")]
+        [Required(ErrorMessage = "Заполните поле. Например, \"sveden/common\"")]
+        public Uri Url { get; set; }
+
+
+        [Display(Name = "Ссылка на страницу (без указания хоста)")]
+        [Required(ErrorMessage = "Заполните поле. Например, \"sveden/common\"")]
+        public string ShortUrl { get; set; }
+
         public List<Uri> Refs;
-        public string Description;
+
+        [Display(Name = "Название")]
+        [Required(ErrorMessage = "Заполните поле")]
+        public string Description { get; set; }
         public bool IsExist = false;
-        public User ResponsibleUser;
+
+        [Display(Name = "Ответственный пользователь")]
+        [Required(ErrorMessage = "Заполните поле")]
+        public User ResponsibleUser { get; set; }
         public List<Itemprop> Data;
         public List<Table> Tables;
 
