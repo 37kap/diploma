@@ -1,18 +1,16 @@
-﻿namespace SiteInfoMonitoring.Core.Enums
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SiteInfoMonitoring.Core.Enums
 {
     public enum ItempropTypeEnum
     {
-        /// <summary>
-        /// Обязательный атрибут.
-        /// </summary>
+        [Display(Name = "Обязательный")]
         Required = 0,
-        /// <summary>
-        /// Атрибут необязательных параметров.
-        /// </summary>
+
+        [Display(Name = "Необязательный")]
         Optional = 1,
-        /// <summary>
-        /// Атрибут обязательных параметров, имеющих несколько значений.
-        /// </summary>
+
+        [Display(Name = "Выборочный")]
         Selective = 2
     }
 }

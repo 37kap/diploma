@@ -69,8 +69,8 @@
                     <td><p>@i.Description</p></td>
                     <td><p>@type</p></td>
                     <td><p>@user</p></td>
-                    <td><p><a href="/Division/EditData?name=@i.Value">Редактировать</a></p></td>
-                    <td><p><a href="/Division/DeleteData?name=@i.Value">Удалить</a></p></td>
+                    <td><p><a href="/Division/EditData?id=@Model.Id&name=@i.Value">Редактировать</a></p></td>
+                    <td><p><a href="/Division/DeleteData?id=@Model.Id&name=@i.Value">Удалить</a></p></td>
                 </tr>
             }
             @if (Model.Data.Count == 0)
@@ -85,7 +85,7 @@
                 </tr>
             }
         </table>
-        <form method="get" action="/Division/AddData">
+        <form method="get" action="/Division/AddData/@Model.Id">
             <p>
                 <input type="submit" value="Добавить" class="btn btn-primary" />
             </p>
@@ -129,8 +129,8 @@
                         <td><p>@t.Name</p></td>
                         <td><p>@type</p></td>
                         <td><p>@user</p></td>
-                        <td><p><a href="/Division/EditTable?id=@k">Редактировать</a></p></td>
-                        <td><p><a href="/Division/DeleteTable?id=@k">Удалить</a></p></td>
+                        <td><p><a href="/Division/EditTable?idd=@Model.Id&idt=@k">Редактировать</a></p></td>
+                        <td><p><a href="/Division/DeleteTable?idd=@Model.Id&idt=@k">Удалить</a></p></td>
                     </tr>
                     k = k + 1;
                 }
@@ -146,10 +146,15 @@
                 </tr>
             }
         </table>
-        <form method="get" action="/Division/AddTable">
+        <form method="get" action="/Division/AddTable/@Model.Id">
             <p>
                 <input type="submit" value="Добавить" class="btn btn-primary" />
             </p>
         </form>
     </div>
+    <form method="post" action="/Division">
+        <p>
+            <input type="submit" value="Вернуться назад" class="btn btn-primary" style="width: 100%" />
+        </p>
+    </form>
 </div>

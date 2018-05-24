@@ -1,0 +1,103 @@
+﻿@model SiteInfoMonitoring.Models.Table
+@{
+    ViewBag.Title = "Редактировать таблицу";
+}
+
+<div>
+    <h3 style="text-align: center">@(ViewBag.Title + " \"" + Model.Name + "\"")</h3>
+    <hr>
+    <form method="post" action="/Division/EditTable?idd=@ViewBag.idd&idt=@ViewBag.idt">
+        <div class="form-group">
+            @Html.LabelFor(x => x.Name)
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+        <div class="form-group">
+            <label>
+                Тип
+            </label>
+            @Html.EnumDropDownListFor(x => x.Type, "Выберите тип", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="user">Ответственный пользователь</label>
+            @Html.DropDownList("user", (IEnumerable<SelectListItem>)((SelectList)ViewBag.Users).Items, "Выберите пользователя", new { @class = "form-control" })
+        </div>
+        @ViewBag.Message
+        <p>
+            <input type="submit" value="Сохранить" class="btn btn-primary" />
+        </p>
+    </form>
+    <hr>
+    <div class="form-group">
+        <h4>Атрибуты:</h4>
+        <table class="table table-bordered">
+            <tr class="header">
+                <td><p>Атрибут</p></td>
+                <td><p>Описание</p></td>
+                <td><p>Тип</p></td>
+                <td><p>Редактировать</p></td>
+                <td><p>Удалить</p></td>
+            </tr>
+            @foreach (SiteInfoMonitoring.Models.TableItemprop i in Model.TableItemprops)
+            {
+                string type = "";
+
+                if (i.Type == SiteInfoMonitoring.Core.Enums.ItempropTypeEnum.Required)
+                {
+                    type = "Обязательный";
+                }
+                else if (i.Type == SiteInfoMonitoring.Core.Enums.ItempropTypeEnum.Optional)
+                {
+                    type = "Необязательный";
+                }
+                else if (i.Type == SiteInfoMonitoring.Core.Enums.ItempropTypeEnum.Selective)
+                {
+                    type = "Выборочный";
+                }
+
+                <tr>
+                    @if (i.IsMainTag)
+                    {
+                        <td><p><b>@i.Value</b></p></td>
+                        <td><p><b>@i.Description</b></p></td>
+
+                    }
+                    else
+                    {
+                        <td><p>@i.Value</p></td>
+                        <td><p>@i.Description</p></td>
+
+                    }
+                    <td><p>@type</p></td>
+                    <td><p><a href="/Division/EditTableData?idd=@ViewBag.idd&idt=@ViewBag.idt&name=@i.Value">Редактировать</a></p></td>
+                    <td><p><a href="/Division/DeleteTableData?idd=@ViewBag.idd&idt=@ViewBag.idt&name=@i.Value">Удалить</a></p></td>
+                </tr>
+            }
+            @if (Model.TableItemprops.Count == 0)
+            {
+                <tr>
+                    <td><p>Отсутствуют</p></td>
+                    <td><p>-</p></td>
+                    <td><p>-</p></td>
+                    <td><p>-</p></td>
+                    <td><p>-</p></td>
+                    <td><p>-</p></td>
+                </tr>
+            }
+        </table>
+        <form method="get" action="/Division/AddTableData">
+            <p>
+                <input type="hidden" name="div" value="@ViewBag.idd" />
+                <input type="hidden" name="tbl" value="@ViewBag.idt" />
+                <input type="submit" value="Добавить" class="btn btn-primary" />
+            </p>
+        </form>
+    </div>
+    <hr />
+    <form action="/Division/Edit">
+        <p>
+            <input type="hidden" name="id" value="@ViewBag.idd" />
+            <input type="submit" value="Вернуться назад" class="btn btn-primary" style="width: 100%" />
+        </p>
+    </form>
+</div>

@@ -1,14 +1,13 @@
-﻿namespace SiteInfoMonitoring.Core.Enums
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SiteInfoMonitoring.Core.Enums
 {
     public enum TableTypeEnum
     {
-        /// <summary>
-        /// Обязательная таблица.
-        /// </summary>
+        [Display(Name = "Обязательная")]
         Required = 0,
-        /// <summary>
-        /// Необязательная таблица, отображаемая только при условии наличия каких-либо данных.
-        /// </summary>
+
+        [Display(Name = "Необязательная")]
         Optional = 1
     }
 }

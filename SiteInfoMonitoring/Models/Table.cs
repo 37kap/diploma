@@ -1,5 +1,6 @@
 ﻿using SiteInfoMonitoring.Core.Enums;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SiteInfoMonitoring.Models
 {
@@ -7,9 +8,15 @@ namespace SiteInfoMonitoring.Models
     {
         public List<TableItemprop> TableItemprops;
         public bool IsOk = false;
-        public string Name = "Таблица";
-        public User ResponsibleUser;
-        public TableTypeEnum Type = TableTypeEnum.Required;
+
+        [Display(Name = "Название")]
+        [Required(ErrorMessage = "Заполните поле")]
+        public string Name { get; set; }
+        public User ResponsibleUser { get; set; }
+
+        [Display(Name = "Тип")]
+        [Required(ErrorMessage = "Заполните поле")]
+        public TableTypeEnum Type { get; set; }
         public int RowCount = 0;
         public Table()
         {

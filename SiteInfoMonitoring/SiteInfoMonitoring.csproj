@@ -240,8 +240,13 @@
     <Content Include="Views\User\Add.cshtml" />
     <Content Include="Views\Division\Index.cshtml" />
     <Content Include="Views\Division\Add.cshtml" />
-    <Content Include="Views\Division\AddUser.cshtml" />
     <Content Include="Views\Division\Edit.cshtml" />
+    <Content Include="Views\Division\AddData.cshtml" />
+    <Content Include="Views\Division\EditData.cshtml" />
+    <Content Include="Views\Division\AddTable.cshtml" />
+    <Content Include="Views\Division\EditTable.cshtml" />
+    <Content Include="Views\Division\AddTableData.cshtml" />
+    <Content Include="Views\Division\EditTableData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

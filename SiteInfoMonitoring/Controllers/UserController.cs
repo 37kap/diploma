@@ -90,12 +90,15 @@ namespace SiteInfoMonitoring.Controllers
         [Authorize]
         public ActionResult Add(User user)
         {
+            var xml = new XmlParser();
+            var users = xml.LoadUsers();
             if (IsAdminUser())
             {
                 try
-                {
-                    var xml = new XmlParser();
-                    var users = xml.LoadUsers();
+                {   if (users.Any(u => u.Login == user.Login))
+                    {
+                        throw new Exception("Пользователь с таким логином уже существует.");
+                    }
                     users.Add(user);
                     xml.SaveUsers(users);
                     return Redirect("/User/Index?userAdded=true");

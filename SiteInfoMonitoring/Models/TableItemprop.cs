@@ -1,7 +1,11 @@
-﻿namespace SiteInfoMonitoring.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SiteInfoMonitoring.Models
 {
     public class TableItemprop : Itemprop
     {
-        public bool IsMainTag = false;
+
+        [Display(Name = "Является главным тегом")]
+        public bool IsMainTag { get; set; }
     }
 }

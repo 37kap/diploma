@@ -22,10 +22,6 @@
                 <td>
                     <p>
                         @login
-                        @if (d.ResponsibleUser == null)
-                        {
-                            <a href="/Division/AddUser/@d.Id">Добавить</a>
-                        }
                     </p>
                 </td>
                 <td><p><a href="@d.Url">@d.Url.ToString().Remove(0, d.Url.ToString().IndexOf(d.Url.Host) + d.Url.Host.Length + 1)</a></p></td>
